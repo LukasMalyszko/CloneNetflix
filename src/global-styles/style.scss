@@ -1,0 +1,11 @@
+
+@import "styles/normalize.scss";
+@import "styles/root.scss";
+@import "styles/fonts.scss";
+
+body {
+  font-family: var(--font);
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+

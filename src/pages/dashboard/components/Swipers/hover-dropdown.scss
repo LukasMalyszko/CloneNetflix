@@ -1,0 +1,9 @@
+.hover-dropdown {
+    background-color: var(--hover-dropdown-color);
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: none;
+    transition: .2s;
+}
