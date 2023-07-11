@@ -1,9 +1,117 @@
 .hover-dropdown {
-    background-color: var(--hover-dropdown-color);
-    height: 100px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
+  --button-size: 32px;
+  --icon-size: 12px;
+
+  background-color: var(--dropdown-color);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  transition: 0.2s;
+  pointer-events: none;
+  // transform: translateY(100%);
+
+  & &__content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  & &__buttons-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & &__main-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  & &__icon-container {
+    width: var(--button-size);
+    height: var(--button-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid var(--border-button-color);
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: var(--secondary-button-color);
+    }
+
+    img {
+      max-width: var(--icon-size);
+      max-height: var(--icon-size);
+    }
+  }
+
+  & &__reaction-buttons {
     display: none;
-    transition: .2s;
+    gap: 8px;
+  }
+
+  & &__static-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  .play {
+      border: none;
+      background-color: var(--color-white);
+      &:hover {
+      background-color: var(--hover-primary-button);
+    }
+}
+
+
+
+.like {
+  &:hover {
+     
+    .hover-dropdown__reaction-buttons {
+      display: flex;
+      border: 1px solid green;
+    }
+  }
+}
+
+
+  .add {
+    --icon-size: 15px;
+  }
+
+  .arrow {
+    transform: rotate(90deg);
+    --icon-size: 10px;
+  }
+
+  & &__episode-current {
+      display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: -0.12px;
+    padding-bottom: 12px;
+}
+
+& &__episode-time {
+    color: #767676;
+  }
+
+  & &__progress-bar {
+    border-radius: 444px;
+    height: 3px;
+    width: 100%;
+    background-color: #353535;
+}
+
+& &__progress-time {
+    width: 0;
+    border-radius: 444px;
+    height: 3px;
+    background-color: #de4129;
+}
 }

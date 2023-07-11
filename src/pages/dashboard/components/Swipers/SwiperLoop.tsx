@@ -1,6 +1,6 @@
 import "../Swipers/SwiperLoop.scss";
 import "../Swipers/hover-dropdown.scss";
-import { Navigation} from "swiper";
+import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
@@ -14,6 +14,11 @@ export const SwiperLoop: any = ({
 }) => {
   const [swiper, setSwiper] = useState<any>(null);
   const [hideButton, setHideButton] = useState(true);
+
+  const timeOnProgressBar = (currentTime: number, fullTime: number) => {
+    let timeOnProgressBar = (currentTime / fullTime) * 100;
+    return timeOnProgressBar;
+  };
 
   return (
     <div className="swiper-component">
@@ -60,9 +65,60 @@ export const SwiperLoop: any = ({
               key={show.id}
               className="swiper-component__slide-container"
             >
-              <img src={show.src} alt={show.title} />
+              <img className="image" src={show.src} alt={show.title} />
               <div className="hover-dropdown">
-                
+                <div className="hover-dropdown__content">
+                  <div className="hover-dropdown__buttons-container">
+                    <div className="hover-dropdown__main-buttons">
+                      <div className="hover-dropdown__icon-container play">
+                        <img src="/play.svg" alt="play" />
+                      </div>
+                      <div className="hover-dropdown__reaction-buttons">
+                        <div className="hover-dropdown__icon-container ">
+                          <img src="/add.svg" alt="play" />
+                        </div>
+                        <div className="hover-dropdown__icon-container ">
+                          <img src="/add.svg" alt="play" />
+                        </div>
+                        <div className="hover-dropdown__icon-container ">
+                          <img src="/add.svg" alt="play" />
+                        </div>
+                      </div>
+                      <div className="hover-dropdown__static-buttons">
+                        <div className="hover-dropdown__icon-container add">
+                          <img src="/add.svg" alt="add" />
+                        </div>
+                        <div className="hover-dropdown__icon-container like">
+                          <img src="/like.svg" alt="like" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="hover-dropdown__icon-container arrow">
+                      <img src="/arrow.svg" alt="arrow" />
+                    </div>
+                  </div>
+                  <div className="hover-dropdown__episode-container">
+                    <div className="hover-dropdown__episode-current">
+                      <div className="hover-dropdown__episode-name">
+                        {show.currentEpisode}
+                      </div>
+                      <div className="hover-dropdown__episode-time">
+                        {show.currentTime} z {show.fullTime} min
+                      </div>
+                    </div>
+                    <div className="hover-dropdown__progress-bar">
+                      <div
+                        className="hover-dropdown__progress-time"
+                        style={{
+                          width: `${timeOnProgressBar(
+                            show.currentTime,
+                            show.fullTime
+                          )}%`,
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </SwiperSlide>
           );

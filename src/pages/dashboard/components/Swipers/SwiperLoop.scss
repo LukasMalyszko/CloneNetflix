@@ -70,11 +70,12 @@
     
     &:hover {
       .hover-dropdown {
-        display: block;
+        transform: translateY(0);
+        pointer-events: auto;
       }
-    }
+  }
 
-    img {
+    .image {
       width: 100%;
       object-fit: cover;
       object-position: left;
@@ -97,7 +98,7 @@
     max-height: 166px;
     width: 200px;
     transition: 0.2s;
-    opacity: 1;
+    display: flex;
     z-index: 2;
 
     .arrow-container {
@@ -135,7 +136,7 @@
   }
 
   .button-hide {
-    opacity: 0;
+    display: none;
   }
 
   @media (max-width: 834px) {
