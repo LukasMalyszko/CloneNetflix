@@ -69,7 +69,7 @@
     }
   }
 
-  .like ~ div {
+  .like:hover + .test {
       
         // display: flex !important;
         color: red;

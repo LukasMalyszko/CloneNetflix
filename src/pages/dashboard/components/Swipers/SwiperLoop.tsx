@@ -84,21 +84,9 @@ export const SwiperLoop: any = ({
                       </div>
 
                       <div className="hover-dropdown__static-buttons">
-                        <div className="hover-dropdown__reaction-buttons">
-                          <div className="hover-dropdown__icon-container ">
-                            <img src="/add.svg" alt="play" />
-                          </div>
-                          <div className="hover-dropdown__icon-container ">
-                            <img src="/add.svg" alt="play" />
-                          </div>
-                          <div className="hover-dropdown__icon-container ">
-                            <img src="/add.svg" alt="play" />
-                          </div>
-                        </div>
                         <div className="hover-dropdown__icon-container add">
                           <img src="/add.svg" alt="add" />
                         </div>
-                        <div className="test">aaaaa</div>
                         <div
                           className="hover-dropdown__icon-container like"
                           onMouseEnter={() => handleTooltip(`tooltip-${index}`)}
@@ -112,6 +100,18 @@ export const SwiperLoop: any = ({
                             className="tooltip tooltip--custom"
                           />
                         </div>
+                        <div className="hover-dropdown__reaction-buttons">
+                          <div className="hover-dropdown__icon-container ">
+                            <img src="/add.svg" alt="play" />
+                          </div>
+                          <div className="hover-dropdown__icon-container ">
+                            <img src="/add.svg" alt="play" />
+                          </div>
+                          <div className="hover-dropdown__icon-container ">
+                            <img src="/add.svg" alt="play" />
+                          </div>
+                        </div>
+                        <div className="test">aaaaa</div>
                       </div>
                     </div>
                     <div className="hover-dropdown__icon-container arrow">
