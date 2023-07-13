@@ -51,6 +51,9 @@
   & &__reaction-buttons {
     display: none;
     gap: 8px;
+    border: 1px solid green;
+    z-index: 2;
+    opacity: 1;
   }
 
   & &__static-buttons {
@@ -66,13 +69,12 @@
     }
   }
 
-  .like {
-    :hover {
-      .hover-dropdown__reaction-buttons {
-        display: flex;
+  .like ~ div {
+      
+        // display: flex !important;
+        color: red;
       }
-    }
-  }
+  
 
   .add {
     --icon-size: 15px;

@@ -2,7 +2,7 @@ import "../Swipers/SwiperLoop.scss";
 import "../Swipers/hover-dropdown.scss";
 import { Tooltip } from "react-tooltip";
 import "../Swipers/tooltip.scss";
-import 'react-tooltip/dist/react-tooltip.css'
+import "react-tooltip/dist/react-tooltip.css";
 import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -82,21 +82,23 @@ export const SwiperLoop: any = ({
                       <div className="hover-dropdown__icon-container play">
                         <img src="/play.svg" alt="play" />
                       </div>
-                      <div className="hover-dropdown__reaction-buttons">
-                        <div className="hover-dropdown__icon-container ">
-                          <img src="/add.svg" alt="play" />
-                        </div>
-                        <div className="hover-dropdown__icon-container ">
-                          <img src="/add.svg" alt="play" />
-                        </div>
-                        <div className="hover-dropdown__icon-container ">
-                          <img src="/add.svg" alt="play" />
-                        </div>
-                      </div>
+
                       <div className="hover-dropdown__static-buttons">
+                        <div className="hover-dropdown__reaction-buttons">
+                          <div className="hover-dropdown__icon-container ">
+                            <img src="/add.svg" alt="play" />
+                          </div>
+                          <div className="hover-dropdown__icon-container ">
+                            <img src="/add.svg" alt="play" />
+                          </div>
+                          <div className="hover-dropdown__icon-container ">
+                            <img src="/add.svg" alt="play" />
+                          </div>
+                        </div>
                         <div className="hover-dropdown__icon-container add">
                           <img src="/add.svg" alt="add" />
                         </div>
+                        <div className="test">aaaaa</div>
                         <div
                           className="hover-dropdown__icon-container like"
                           onMouseEnter={() => handleTooltip(`tooltip-${index}`)}
@@ -107,7 +109,7 @@ export const SwiperLoop: any = ({
                           <img src="/like.svg" alt="like" />
                           <Tooltip
                             id={`tooltip-${index}`}
-                            className="tooltip"
+                            className="tooltip tooltip--custom"
                           />
                         </div>
                       </div>

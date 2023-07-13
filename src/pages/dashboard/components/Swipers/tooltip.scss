@@ -1,6 +1,6 @@
-.tooltip {
+.tooltip.tooltip--custom{
   background-color: var(--color-white);
-  color: #767676;
+  color: #767676 !important;
   font-size: 12px;
   font-weight: 500;
   line-height: 120%;
@@ -8,5 +8,4 @@
   border-radius: 8px;
   padding: 4px 8px 6px;
   opacity: 1;
-  transition: .2s;
 }
