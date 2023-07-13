@@ -1,11 +1,12 @@
 import "../Swipers/SwiperLoop.scss";
 import "../Swipers/hover-dropdown.scss";
 import { Tooltip } from "react-tooltip";
+import "../Swipers/tooltip.scss";
+import 'react-tooltip/dist/react-tooltip.css'
 import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
-import "../Swipers/tooltip.scss";
 
 export const SwiperLoop: any = ({
   showsArray,
@@ -67,6 +68,7 @@ export const SwiperLoop: any = ({
         onSwiper={setSwiper}
       >
         {showsArray.map((show: any, index: number) => {
+          tooltipId;
           return (
             <SwiperSlide
               key={show.id}
@@ -103,7 +105,10 @@ export const SwiperLoop: any = ({
                           data-tooltip-content="Podoba mi się"
                         >
                           <img src="/like.svg" alt="like" />
-                        <Tooltip id={`tooltip-${index}`} className="tooltip" />
+                          <Tooltip
+                            id={`tooltip-${index}`}
+                            className="tooltip"
+                          />
                         </div>
                       </div>
                     </div>
