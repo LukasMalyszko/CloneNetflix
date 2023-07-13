@@ -41,8 +41,6 @@
     &:hover {
       background-color: var(--secondary-button-color);
     }
-    //
-    //
 
     img {
       max-width: var(--icon-size);
@@ -59,25 +57,22 @@
     display: flex;
     gap: 8px;
   }
+
   .play {
-      border: none;
-      background-color: var(--color-white);
-      &:hover {
+    border: none;
+    background-color: var(--color-white);
+    &:hover {
       background-color: var(--hover-primary-button);
     }
-}
+  }
 
-
-
-.like {
-  &:hover {
-     
-    .hover-dropdown__reaction-buttons {
-      display: flex;
+  .like {
+    :hover {
+      .hover-dropdown__reaction-buttons {
+        display: flex;
+      }
     }
   }
-}
-
 
   .add {
     --icon-size: 15px;
@@ -89,16 +84,25 @@
   }
 
   & &__episode-current {
-      display: flex;
+    display: flex;
     justify-content: space-between;
     font-size: 12px;
     font-weight: 500;
     line-height: 120%;
     letter-spacing: -0.12px;
     padding-bottom: 12px;
-}
+  }
 
-& &__episode-time {
+  & &__episode-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    max-width: 118px;
+  }
+
+  & &__episode-time {
     color: #767676;
   }
 
@@ -107,12 +111,12 @@
     height: 3px;
     width: 100%;
     background-color: #353535;
-}
+  }
 
-& &__progress-time {
+  & &__progress-time {
     width: 0;
     border-radius: 444px;
     height: 3px;
     background-color: #de4129;
-}
+  }
 }

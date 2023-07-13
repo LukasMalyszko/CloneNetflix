@@ -1,9 +1,11 @@
 import "../Swipers/SwiperLoop.scss";
 import "../Swipers/hover-dropdown.scss";
+import { Tooltip } from "react-tooltip";
 import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
+import "../Swipers/tooltip.scss";
 
 export const SwiperLoop: any = ({
   showsArray,
@@ -14,10 +16,15 @@ export const SwiperLoop: any = ({
 }) => {
   const [swiper, setSwiper] = useState<any>(null);
   const [hideButton, setHideButton] = useState(true);
+  const [tooltipId, setTooltipId] = useState("");
 
   const timeOnProgressBar = (currentTime: number, fullTime: number) => {
     let timeOnProgressBar = (currentTime / fullTime) * 100;
     return timeOnProgressBar;
+  };
+
+  const handleTooltip = (id: string) => {
+    setTooltipId(id);
   };
 
   return (
@@ -59,7 +66,7 @@ export const SwiperLoop: any = ({
         }}
         onSwiper={setSwiper}
       >
-        {showsArray.map((show: any) => {
+        {showsArray.map((show: any, index: number) => {
           return (
             <SwiperSlide
               key={show.id}
@@ -88,8 +95,15 @@ export const SwiperLoop: any = ({
                         <div className="hover-dropdown__icon-container add">
                           <img src="/add.svg" alt="add" />
                         </div>
-                        <div className="hover-dropdown__icon-container like">
+                        <div
+                          className="hover-dropdown__icon-container like"
+                          onMouseEnter={() => handleTooltip(`tooltip-${index}`)}
+                          onMouseLeave={() => handleTooltip("")}
+                          data-tooltip-id={`tooltip-${index}`}
+                          data-tooltip-content="Podoba mi się"
+                        >
                           <img src="/like.svg" alt="like" />
+                        <Tooltip id={`tooltip-${index}`} className="tooltip" />
                         </div>
                       </div>
                     </div>
