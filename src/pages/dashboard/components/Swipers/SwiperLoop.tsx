@@ -11,6 +11,7 @@ import "swiper/scss";
 export const SwiperLoop: any = ({
   showsArray,
   showsHeaderTitle,
+  
 }: {
   showsArray: Array<object>;
   showsHeaderTitle: string;
@@ -18,6 +19,7 @@ export const SwiperLoop: any = ({
   const [swiper, setSwiper] = useState<any>(null);
   const [hideButton, setHideButton] = useState(true);
   const [tooltipId, setTooltipId] = useState("");
+  const [isHovering, setIsHovering] = useState(false);
 
   const timeOnProgressBar = (currentTime: number, fullTime: number) => {
     let timeOnProgressBar = (currentTime / fullTime) * 100;
@@ -26,6 +28,14 @@ export const SwiperLoop: any = ({
 
   const handleTooltip = (id: string) => {
     setTooltipId(id);
+  };
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
   };
 
   return (
@@ -69,6 +79,7 @@ export const SwiperLoop: any = ({
       >
         {showsArray.map((show: any, index: number) => {
           tooltipId;
+          {console.log(isHovering)}
           return (
             <SwiperSlide
               key={show.id}
@@ -76,42 +87,54 @@ export const SwiperLoop: any = ({
             >
               <img className="image" src={show.src} alt={show.title} />
               <div className="hover-dropdown">
-                <div className="hover-dropdown__content">
+                <div className="hover-dropdown__content"
+                >
                   <div className="hover-dropdown__buttons-container">
                     <div className="hover-dropdown__main-buttons">
                       <div className="hover-dropdown__icon-container play">
                         <img src="/play.svg" alt="play" />
                       </div>
 
-                      <div className="hover-dropdown__static-buttons">
+                      <div className="hover-dropdown__static-buttons"
+                          >
                         <div className="hover-dropdown__icon-container add">
                           <img src="/add.svg" alt="add" />
                         </div>
                         <div
                           className="hover-dropdown__icon-container like"
-                          onMouseEnter={() => handleTooltip(`tooltip-${index}`)}
-                          onMouseLeave={() => handleTooltip("")}
-                          data-tooltip-id={`tooltip-${index}`}
-                          data-tooltip-content="Podoba mi się"
+                          onMouseOver={handleMouseOver}
+                          // onMouseLeave={handleMouseOut}
+
+                          // onMouseEnter={() => handleTooltip(`tooltip-${index}`)}
+                          // onMouseLeave={() => handleTooltip("")}
+                          // data-tooltip-id={`tooltip-${index}`}
+                          // data-tooltip-content="Podoba mi się"
                         >
                           <img src="/like.svg" alt="like" />
-                          <Tooltip
+                          {/* <Tooltip
                             id={`tooltip-${index}`}
                             className="tooltip tooltip--custom"
-                          />
+                          /> */}
                         </div>
-                        <div className="hover-dropdown__reaction-buttons">
-                          <div className="hover-dropdown__icon-container ">
-                            <img src="/add.svg" alt="play" />
+                        {isHovering && <div className="hover-dropdown__reaction-buttons">
+                          <div
+                            className="hover-dropdown__icon-container dislike"
+                            // onMouseEnter={() =>
+                            //   handleTooltip(`tooltip-${index}`)
+                            // }
+                            // onMouseLeave={() => handleTooltip("")}
+                            // data-tooltip-id={`tooltip-${index}`}
+                            // data-tooltip-content="To nie dla mnie"
+                          >
+                            <img src="/like.svg" alt="dislike" />
                           </div>
-                          <div className="hover-dropdown__icon-container ">
-                            <img src="/add.svg" alt="play" />
+                          <div className="hover-dropdown__icon-container">
+                            <img src="/like.svg" alt="like" />
                           </div>
-                          <div className="hover-dropdown__icon-container ">
-                            <img src="/add.svg" alt="play" />
+                          <div className="hover-dropdown__icon-container love">
+                            <img src="/love.svg" alt="love" />
                           </div>
-                        </div>
-                        <div className="test">aaaaa</div>
+                        </div>}
                       </div>
                     </div>
                     <div className="hover-dropdown__icon-container arrow">

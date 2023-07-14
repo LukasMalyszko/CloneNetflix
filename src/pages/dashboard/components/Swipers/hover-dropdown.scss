@@ -49,16 +49,32 @@
   }
 
   & &__reaction-buttons {
-    display: none;
+    display: flex;
     gap: 8px;
-    border: 1px solid green;
-    z-index: 2;
-    opacity: 1;
+    position: absolute;
+    background-color: var(--secondary-button-color);
+    border-radius: 444px;
+    box-shadow: 16px 16px 24px 0px #00000052;
+    padding: 4px 8px;
+    top: -4px;
+    left: -3px;
+
+    .hover-dropdown__icon-container {
+      border-color: var(--secondary-button-color) ;
+      &:hover {
+        border-color: var(--border-button-color) ;
+      }
+    }
+
+    .dislike {
+      transform: rotate(180deg);
+    }
   }
 
   & &__static-buttons {
     display: flex;
     gap: 8px;
+    position: relative;
   }
 
   .play {
@@ -69,12 +85,11 @@
     }
   }
 
-  .like:hover + .test {
-      
-        // display: flex !important;
-        color: red;
-      }
-  
+  // .like:hover {
+  //   + .hover-dropdown__reaction-buttons {
+  //     display: flex;
+  //   }
+  // }
 
   .add {
     --icon-size: 15px;
@@ -121,4 +136,15 @@
     height: 3px;
     background-color: #de4129;
   }
+
+  @media (max-width: 616px) {
+    & &__reaction-buttons {
+      --button-size: 28px;
+      gap: 5px;
+      padding: 4px;
+    }
+  
+
+  }
+
 }
