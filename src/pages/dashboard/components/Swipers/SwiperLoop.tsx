@@ -1,12 +1,12 @@
 import "../Swipers/SwiperLoop.scss";
 import "../Swipers/hover-dropdown.scss";
-import { Tooltip } from "react-tooltip";
 import "../Swipers/tooltip.scss";
 import "react-tooltip/dist/react-tooltip.css";
 import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
+import { ReactionButtons } from "./ReactionButtons";
 
 export const SwiperLoop: any = ({
   showsArray,
@@ -104,49 +104,11 @@ export const SwiperLoop: any = ({
                           <img src="/like.svg" alt="like" />
                         </div>
                         {isHovering && (
-                          <div
-                            className="hover-dropdown__reaction-buttons"
-                            onMouseLeave={handleMouseOut}
-                          >
-                            <div
-                              className="hover-dropdown__icon-container dislike"
-                              onMouseEnter={() =>
-                                handleTooltip(`tooltip-${index}`)
-                              }
-                              onMouseLeave={() => handleTooltip("")}
-                              data-tooltip-id={`tooltip-${index}`}
-                              data-tooltip-content="To nie dla mnie"
-                            >
-                              <img src="/like.svg" alt="dislike" />
-                            </div>
-
-                            <div
-                              className="hover-dropdown__icon-container like"
-                              onMouseEnter={() =>
-                                handleTooltip(`tooltip-${index}`)
-                              }
-                              onMouseLeave={() => handleTooltip("")}
-                              data-tooltip-id={`tooltip-${index}`}
-                              data-tooltip-content="Podoba mi się"
-                            >
-                              <img src="/like.svg" alt="like" />
-                            </div>
-                            <div
-                              className="hover-dropdown__icon-container love"
-                              onMouseEnter={() =>
-                                handleTooltip(`tooltip-${index}`)
-                              }
-                              onMouseLeave={() => handleTooltip("")}
-                              data-tooltip-id={`tooltip-${index}`}
-                              data-tooltip-content="Uwielbiam to"
-                            >
-                              <img src="/love.svg" alt="love" />
-                            </div>
-                            <Tooltip
-                              id={`tooltip-${index}`}
-                              className="tooltip tooltip--custom"
-                            />
-                          </div>
+                          <ReactionButtons
+                            index={index}
+                            handleTooltip={handleTooltip}
+                            onMouseOut={handleMouseOut}
+                          />
                         )}
                       </div>
                     </div>
