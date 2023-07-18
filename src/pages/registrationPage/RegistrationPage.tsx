@@ -1,8 +1,15 @@
-import { RegisterComponent } from "./components/RegisterComponent"
+import { RegisterComponent } from "./components/RegisterComponent/RegisterComponent";
+import "./components/RegisterComponent/RegisterComponent.scss";
+import "./components/RegisterInput/RegisterInput.scss";
+import { ImageComponent } from "./components/ImageComponent/ImageComponent";
+import "./components/ImageComponent/ImageComponent.scss";
+import "./RegistrationPage.scss";
 
 export const RegistrationPage = () => {
-
-    return (
-        <RegisterComponent />
-    )
-}
+  return (
+  <div className="registration-page">
+      <RegisterComponent />
+      <ImageComponent src="/netflix-image.png" name="Netflix logo"/>
+  </div>
+  )
+};

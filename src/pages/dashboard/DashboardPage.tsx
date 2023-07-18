@@ -1,12 +1,12 @@
-// import React from "react"
 import { Header } from "./components/Header/Header";
-import { SwiperNoLoop } from "./components/Swipers/SwiperNoLoop";
-import { SwiperLoop } from "./components/Swipers/SwiperLoop";
+import { SwiperNoLoop } from "./components/Swipers/SwiperNoLoop/SwiperNoLoop";
+import { SwiperLoop } from "./components/Swipers/SwiperLoop/SwiperLoop";
 import { showsProps } from "./components/Swipers/Intetfaces";
-
+import "./components/Swipers/SwiperNoLoop/SwiperNoLoop.scss";
+import "./components/Swipers/SwiperLoop/SwiperLoop.scss";
 
 export const DashboardPage = () => {
-  const showsArrayAppreciated : Array<showsProps> = [
+  const showsArrayAppreciated: Array<showsProps> = [
     {
       id: 1,
       title: "Breaking Bad",
@@ -91,7 +91,7 @@ export const DashboardPage = () => {
     },
   ];
 
-  const showsArrayPopularNow : Array<showsProps> = [
+  const showsArrayPopularNow: Array<showsProps> = [
     {
       id: 1,
       title: "Peaky Blinders",
@@ -111,14 +111,12 @@ export const DashboardPage = () => {
       id: 4,
       title: "The Office",
       src: "/office.png",
-      
     },
 
     {
       id: 5,
       title: "Viking",
       src: "/wiking.png",
-      
     },
     {
       id: 6,
@@ -155,26 +153,26 @@ export const DashboardPage = () => {
       title: "Lucyfer",
       src: "/lucyfer.png",
     },
-  ]
+  ];
 
-  const showsArrayTopTenToday : Array<showsProps> = [
+  const showsArrayTopTenToday: Array<showsProps> = [
     {
       id: 1,
       title: "The Office",
       src: "/office.png",
-      color: "gold"
+      color: "gold",
     },
     {
       id: 2,
       title: "Breaking Bad",
       src: "/BB.png",
-      color: "silver"
+      color: "silver",
     },
     {
       id: 3,
       title: "The Walking Dead",
       src: "/WD.png",
-      color: "bronze"
+      color: "bronze",
     },
     {
       id: 4,
@@ -211,18 +209,33 @@ export const DashboardPage = () => {
       title: "Viking",
       src: "/wiking.png",
     },
-  ]
+  ];
 
   return (
     <>
       <Header />
 
       <div className="swiper-container">
-        <SwiperLoop showsArray={showsArrayAppreciated} showsHeaderTitle={"Docenione przez krytyków"} />
-        <SwiperLoop showsArray={showsArrayPopularNow} showsHeaderTitle={"Popularne teraz"} />
-        <SwiperLoop showsArray={showsArrayAppreciated} showsHeaderTitle={"Obejrzyj ponownie"} />
-        <SwiperNoLoop showsArray={showsArrayTopTenToday} showsHeaderTitle={"Top 10 seriali w Polsce dzisiaj"}/>
-        <SwiperNoLoop showsArray={showsArrayTopTenToday} showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}/>
+        <SwiperLoop
+          showsArray={showsArrayAppreciated}
+          showsHeaderTitle={"Docenione przez krytyków"}
+        />
+        <SwiperLoop
+          showsArray={showsArrayPopularNow}
+          showsHeaderTitle={"Popularne teraz"}
+        />
+        <SwiperLoop
+          showsArray={showsArrayAppreciated}
+          showsHeaderTitle={"Obejrzyj ponownie"}
+        />
+        <SwiperNoLoop
+          showsArray={showsArrayTopTenToday}
+          showsHeaderTitle={"Top 10 seriali w Polsce dzisiaj"}
+        />
+        <SwiperNoLoop
+          showsArray={showsArrayTopTenToday}
+          showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
+        />
       </div>
     </>
   );

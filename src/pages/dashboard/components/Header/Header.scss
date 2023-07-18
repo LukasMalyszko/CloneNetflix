@@ -1,3 +1,8 @@
+body {
+  background-color: var(--color-black-900);
+  color: var(--color-white-100);
+}
+
 .dashboard-header-component {
   & &__main-img-container {
     position: relative;
@@ -82,17 +87,17 @@
 
   & &__primary-button {
     &:hover {
-      background-color: var(--hover-primary-button);
+      background-color: var(--button-primary-hover);
     }
   }
 
   & &__secondary-button {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--secondary-button-color);
     backdrop-filter: blur(4px);
     color: var(--color-white);
 
     &:hover {
-      background-color: var(--hover-secondary-button);
+      background-color: var(--button-secondary-hover);
     }
   }
 

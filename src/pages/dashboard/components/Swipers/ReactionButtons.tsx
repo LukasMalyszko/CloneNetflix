@@ -7,13 +7,10 @@ export const ReactionButtons = ({
 }: {
   index: number;
   handleTooltip: (id: string) => void;
-    onMouseOut: () => void;
+  onMouseOut: () => void;
 }) => {
   return (
-    <div
-      className="hover-dropdown__reaction-buttons"
-      onMouseLeave={onMouseOut}
-    >
+    <div className="hover-dropdown__reaction-buttons" onMouseLeave={onMouseOut}>
       <div
         className="hover-dropdown__icon-container dislike"
         onMouseEnter={() => handleTooltip(`tooltip-${index}`)}

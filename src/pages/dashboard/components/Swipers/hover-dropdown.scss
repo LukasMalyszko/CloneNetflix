@@ -2,7 +2,7 @@
   --button-size: 32px;
   --icon-size: 12px;
 
-  background-color: var(--dropdown-color);
+  background-color: var( --background-color);
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -34,7 +34,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    border: 1px solid var(--border-button-color);
+    border: 1px solid var(--color-black-300);
     cursor: pointer;
     transition: 0.2s;
 
@@ -52,7 +52,7 @@
     display: flex;
     gap: 8px;
     position: absolute;
-    background-color: var(--secondary-button-color);
+    background-color: #242424;
     border-radius: 444px;
     box-shadow: 16px 16px 24px 0px #00000052;
     padding: 4px 8px;
@@ -60,9 +60,10 @@
     left: -3px;
 
     .hover-dropdown__icon-container {
-      border-color: var(--secondary-button-color) ;
+      border-color: transparent ;
       &:hover {
         border-color: var(--border-button-color) ;
+        background-color: transparent;
       }
     }
 
@@ -79,17 +80,11 @@
 
   .play {
     border: none;
-    background-color: var(--color-white);
+    background-color: var(--color-white-100);
     &:hover {
-      background-color: var(--hover-primary-button);
+      background-color: var(--button-primary-hover);
     }
   }
-
-  // .like:hover {
-  //   + .hover-dropdown__reaction-buttons {
-  //     display: flex;
-  //   }
-  // }
 
   .add {
     --icon-size: 15px;

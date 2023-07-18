@@ -1,0 +1,240 @@
+body {
+  background-color: var(--color-white-100);
+}
+.register-component {
+  --margin-on-page: 32px;
+  --checkbox-size: 20px;
+
+  display: flex;
+  flex-direction: column;
+  //   flex-shrink: 0;
+  align-items: center;
+  background-color: var(--color-white);
+  padding: 56px 80px 100px;
+  max-width: 440px;
+  color: var(--color-black-900);
+
+  & &__logo-container {
+    margin-bottom: 32px;
+
+    path {
+      fill: var(--color-black-900);
+    }
+  }
+
+  & &__header {
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -0.96px;
+    max-width: 288px;
+    margin-bottom: 50px;
+  }
+
+  button {
+    width: 100%;
+    display: flex;
+    height: 57px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    margin-bottom: var(--margin-on-page);
+    padding: 0;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &[data-loader="0"] {
+      .text {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .loader {
+        display: none;
+      }
+    }
+
+    &[data-loader="1"] {
+      .text {
+        display: none;
+      }
+
+      .loader {
+        display: block;
+        max-width: 42px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  & &__first-button {
+    background: #445a90;
+    margin-bottom: 18px;
+
+    &:hover {
+      background-color: #3e5288;
+    }
+    &:active {
+      background-color: #3e5288;
+    }
+  }
+
+  & &__second-button {
+    background-color: transparent;
+    color: var(--color-black-900);
+    border: 1px solid var(--color-black-100);
+
+    &:hover {
+      border-color: var(--color-black-200);
+    }
+    &:active {
+      border-color: var(--color-black-300);
+    }
+    path {
+      fill: var(--color-black-100);
+    }
+  }
+
+  & &__break {
+    display: flex;
+    width: 100%;
+    padding-block: 10px;
+    height: 24px;
+  }
+
+  & &__break-line {
+    background-color: var(--color-black-100);
+    width: 100%;
+    height: 1px;
+    margin-bottom: var(--margin-on-page);
+  }
+
+  & &__break-line-text {
+    color: var(--color-black-300);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: -10px 24px 0;
+  }
+
+  & &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & &__form-label {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.36px;
+    margin-bottom: var(--margin-on-page);
+  }
+
+  & &__info {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.14px;
+    margin-block: 16px var(--margin-on-page);
+  }
+
+  & &__inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  & &__confirm-container {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: -0.14px;
+    margin-bottom: var(--margin-on-page);
+  }
+
+  & &__chceckbox {
+    cursor: pointer;
+    appearance: none;
+    border-radius: 5px;
+    border: 1px solid var(--color-black-100);
+    height: var(--checkbox-size);
+    max-width: var(--checkbox-size);
+    width: 100%;
+    background: url(/check.svg) no-repeat center;
+    transition: 0.2s;
+
+    &:checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    &:hover {
+      border-color: var(--color-black-200);
+    }
+  }
+
+  & &__terms {
+    text-align: center;
+    font-size: 12px;
+    line-height: normal;
+    letter-spacing: -0.12px;
+    margin-bottom: var(--margin-on-page);
+  }
+
+  & &__link {
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.12px;
+  }
+
+  & &__primary-button {
+    background-color: var(--primary-color);
+    max-width: 188px;
+    align-self: center;
+
+    &:hover {
+      background-color: var(--color-red-700);
+    }
+    &:active {
+      background-color: var(--color-red-900);
+    }
+  }
+
+  & &__log-container {
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    a {
+      font-size: 16px;
+      letter-spacing: -0.32px;
+    }
+  }
+
+  @media (max-width: 1080px) {
+    margin: auto;
+  }
+}

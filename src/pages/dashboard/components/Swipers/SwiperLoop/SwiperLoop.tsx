@@ -1,12 +1,12 @@
-import "../Swipers/SwiperLoop.scss";
-import "../Swipers/hover-dropdown.scss";
-import "../Swipers/tooltip.scss";
+import "./SwiperLoop.scss";
+import "../hover-dropdown.scss";
+import "../tooltip.scss";
 import "react-tooltip/dist/react-tooltip.css";
 import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
-import { ReactionButtons } from "./ReactionButtons";
+import { ReactionButtons } from "../ReactionButtons";
 
 export const SwiperLoop: any = ({
   showsArray,
@@ -78,7 +78,6 @@ export const SwiperLoop: any = ({
       >
         {showsArray.map((show: any, index: number) => {
           tooltipId;
-          // {console.log(isHovering)}
           return (
             <SwiperSlide
               key={show.id}

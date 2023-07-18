@@ -1,0 +1,36 @@
+.register-input {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  & &__label {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.14px;
+  }
+
+  & &__input {
+    height: 56px;
+    padding-left: 32px;
+    border: 1px solid var(--color-black-100);
+    border-radius: 50px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.14px;
+
+    &::placeholder{
+        color: var(--color-black-300);
+    }
+    &:hover {
+        border-color: var(--color-black-200);
+    }
+    &:focus {
+        border: 1px solid var(--color-black-200);
+    }
+
+  }
+}

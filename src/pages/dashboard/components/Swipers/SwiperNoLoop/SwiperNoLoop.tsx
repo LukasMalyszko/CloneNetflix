@@ -1,10 +1,8 @@
-import "../Swipers/SwiperNoLoop.scss";
-import "../Swipers/SwiperLoop.scss";
 import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
-import { showsProps } from "../Swipers/Intetfaces";
+import { showsProps } from "../Intetfaces";
 
 export const SwiperNoLoop: any = ({
   showsArray,
