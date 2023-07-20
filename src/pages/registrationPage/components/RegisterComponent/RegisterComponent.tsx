@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { RegisterInput } from "../RegisterInput/RegisterInput";
 import { Button } from "../Button";
+import { User } from "../Interfaces";
+import { debounce, values } from "lodash";
 
 export const RegisterComponent = () => {
   const [dataLoading, setDataLoading] = useState<number>(0);
@@ -9,7 +11,98 @@ export const RegisterComponent = () => {
     setDataLoading(1);
   };
 
-  
+  const [form, setForm] = useState<User>({
+    email: {
+      value: "",
+      isValid: false,
+      errorMessage: "",
+    },
+    password: {
+      value: "",
+      isValid: false,
+      errorMessage: "",
+    },
+    confirmPassword: {
+      value: "",
+      isValid: false,
+      errorMessage: "",
+    },
+    userName: {
+      value: "",
+      isValid: false,
+      errorMessage: "",
+    },
+  });
+
+  const handleChange = (
+    // event: React.ChangeEvent<HTMLInputElement>,
+    value: string,
+    name: string
+  ) => {
+    // const { name, value } = event.target;
+    const validator = basicValidator[name];
+
+    let isValid = true;
+    let errorMessage = "";
+
+    if (validator) {
+      const validatorValue = validator(value);
+
+      if (typeof validatorValue === "string") {
+        isValid = !validatorValue;
+        errorMessage = validatorValue;
+      }
+    }
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: { ...prevForm[name], value, isValid, errorMessage },
+    }));
+    // console.log();
+  };
+
+  const handleDebounceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    let isValid = true;
+    let errorMessage = "";
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: { ...prevForm[name], value, isValid, errorMessage },
+    }));
+    const handleDebounce = debounce((event) => {
+      handleChange(value, name);
+    }, 1000);
+    handleDebounce(event);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isFormValid) {
+      console.log(form);
+    }
+  };
+
+  const isFormValid = useMemo(
+    () => Object.values(form).every(({ isValid }) => isValid),
+    [form]
+  );
+
+  interface IBasicValidator {
+    [key: string]: (value: string) => boolean | string | void;
+  }
+
+  const basicValidator: IBasicValidator = {
+    email: (value) =>
+      /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(String(value)) ||
+      "Incorrect e-mail",
+
+    password: (value) =>
+      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(String(value)) ||
+      "Incorrect password ",
+
+    confirmPassword: (value) =>
+      form.password.value !== value ? "Passwords are not the same" : "",
+  };
 
   return (
     <div className="register-component">
@@ -55,15 +148,11 @@ export const RegisterComponent = () => {
         className="register-component__first-button"
         image="/fb.svg"
         text="Sign up with Facebook"
-        data={dataLoading}
-        onClick={handleLoader}
       />
       <Button
         className="register-component__second-button"
         image="google 1.svg"
         text="Sign up with Google"
-        data={dataLoading}
-        onClick={handleLoader}
       />
       <div className="register-component__break">
         <div className="register-component__break-line"></div>
@@ -73,27 +162,40 @@ export const RegisterComponent = () => {
       <div className="register-component__form-label">
         Sign up with your email address
       </div>
-      <form className="register-component__form">
+      <form className="register-component__form" onSubmit={handleSubmit}>
         <div className="register-component__inputs-container">
           <RegisterInput
+            name="email"
             type="email"
             label="What’s your email?"
             placeholder="Enter you email"
+            form={form}
+            onChange={handleDebounceChange}
           />
+
           <RegisterInput
+            name="password"
             type="password"
             label="Password"
             placeholder="Create a password"
+            form={form}
+            onChange={handleDebounceChange}
           />
           <RegisterInput
+            name="confirmPassword"
             type="password"
             label="Confirm password"
             placeholder="Confirm password"
+            form={form}
+            onChange={handleDebounceChange}
           />
           <RegisterInput
+            name="userName"
             type="text"
             label="What should we call you?"
             placeholder="Enter a profile name"
+            form={form}
+            onChange={handleDebounceChange}
           />
         </div>
         <div className="register-component__info">
@@ -104,6 +206,7 @@ export const RegisterComponent = () => {
             className="register-component__chceckbox"
             id="agreement-check"
             type="checkbox"
+            required
           />
           <label htmlFor="agreement-check">
             Share my registration date with Netflix content providers for
@@ -126,9 +229,14 @@ export const RegisterComponent = () => {
           .
         </div>
         <button
+          type="submit"
           className="register-component__primary-button"
           data-loader={dataLoading}
-          onClick={handleLoader}
+          onClick={() => {
+            handleLoader();
+            // handleChange();
+          }}
+          disabled={!isFormValid}
         >
           <div className="text">Sign up</div>
           <div className="loader">

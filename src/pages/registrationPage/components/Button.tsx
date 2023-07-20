@@ -1,24 +1,22 @@
 // import React from 'react'
 interface ButtonProps {
-    image: any,
-    text: string,
-    className: string,
-    data: any,
-    onClick: () => void
+  image: any;
+  text: string;
+  className: string;
+  
 }
 
-export const Button: React.FC<ButtonProps> = ({image, text, className, data, onClick}) => {
+export const Button: React.FC<ButtonProps> = ({
+  image,
+  text,
+  className,
+}) => {
   return (
-    <button className={className}
-    data-loader={data}
-    onClick={onClick}>
-        <div className="text">
-          <img src={image} alt={image} />
-          {text}
-        </div>
-        <div className="loader">
-            <img src="/animated-loader.svg" />
-          </div>
+    <button
+    className={className} >
+        <img src={image} alt={image} />
+        {text}
+      
     </button>
-  )
-}
+  );
+};

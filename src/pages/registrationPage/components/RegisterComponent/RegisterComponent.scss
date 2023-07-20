@@ -36,6 +36,7 @@ body {
   button {
     width: 100%;
     display: flex;
+    gap: 20px;
     height: 57px;
     justify-content: center;
     align-items: center;
@@ -52,11 +53,19 @@ body {
     cursor: pointer;
     transition: 0.2s;
 
+    &[disabled] {
+      cursor: not-allowed;
+      background-color: var(--color-black-300);
+      &:hover {
+      background-color: var(--color-black-300);
+
+      }
+    }
+
     &[data-loader="0"] {
       .text {
         display: flex;
         align-items: center;
-        gap: 20px;
       }
 
       .loader {
@@ -72,6 +81,7 @@ body {
       .loader {
         display: block;
         max-width: 42px;
+        max-height: 42px;
         img {
           width: 100%;
         }

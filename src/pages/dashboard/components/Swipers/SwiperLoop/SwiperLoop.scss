@@ -1,8 +1,11 @@
 .swiper-container {
+  background-color: var(--color-black-900);
   display: flex;
+  background-color: var(--color-black-900);
+
   flex-direction: column;
   gap: 60px;
-  margin-bottom: 30px;
+  padding-bottom: 30px;
   margin-top: -120px;
 
   @media (max-width: 834px) {
