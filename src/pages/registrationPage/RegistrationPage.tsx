@@ -4,6 +4,8 @@ import "./components/RegisterInput/RegisterInput.scss";
 import { ImageComponent } from "./components/ImageComponent/ImageComponent";
 import "./components/ImageComponent/ImageComponent.scss";
 import "./RegistrationPage.scss";
+import "./components/BreakLine/BreakLine.scss";
+// import { LogInComponent } from "./components/LogInComponent/LogInComponent";
 
 export const RegistrationPage = () => {
   return (

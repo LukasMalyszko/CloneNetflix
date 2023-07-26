@@ -1,0 +1,22 @@
+.break-component {
+  display: flex;
+  width: 100%;
+  padding-block: 10px;
+  height: 24px;
+
+  & &__break-line {
+    background-color: var(--color-black-100);
+    width: 100%;
+    height: 1px;
+    margin-bottom: var(--margin-on-page);
+  }
+
+  & &__break-line-text {
+    color: var(--color-black-300);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: -10px 24px 0;
+  }
+}

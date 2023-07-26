@@ -7,20 +7,13 @@ body {
 
   display: flex;
   flex-direction: column;
-  //   flex-shrink: 0;
   align-items: center;
   background-color: var(--color-white);
   padding: 56px 80px 100px;
   max-width: 440px;
   color: var(--color-black-900);
 
-  & &__logo-container {
-    margin-bottom: 32px;
-
-    path {
-      fill: var(--color-black-900);
-    }
-  }
+  
 
   & &__header {
     text-align: center;
@@ -117,28 +110,7 @@ body {
     }
   }
 
-  & &__break {
-    display: flex;
-    width: 100%;
-    padding-block: 10px;
-    height: 24px;
-  }
-
-  & &__break-line {
-    background-color: var(--color-black-100);
-    width: 100%;
-    height: 1px;
-    margin-bottom: var(--margin-on-page);
-  }
-
-  & &__break-line-text {
-    color: var(--color-black-300);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin: -10px 24px 0;
-  }
+  
 
   & &__form {
     display: flex;
@@ -180,9 +152,15 @@ body {
     line-height: 120%;
     letter-spacing: -0.14px;
     margin-bottom: var(--margin-on-page);
+    // position: relative;
+
+    label {
+      cursor: pointer;
+      transition: .2s;
+    }
   }
 
-  & &__chceckbox {
+  & &__checkbox {
     cursor: pointer;
     appearance: none;
     border-radius: 5px;
@@ -201,6 +179,22 @@ body {
     &:hover {
       border-color: var(--color-black-200);
     }
+  }
+
+  .error-container {
+    display: flex;
+    margin-top: -28px;
+    align-items: center;
+    gap: 8px;
+    color: #b5120d;
+    font-size: 14px;
+    line-height: normal;
+    margin-bottom: 10px;
+  }
+  
+ .error-message {
+    padding: 0;
+    margin: 0;
   }
 
   & &__terms {

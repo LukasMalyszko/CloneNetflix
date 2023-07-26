@@ -7,6 +7,7 @@ interface RegisterInputProps {
   type: string;
   value?: string;
   form: User;
+  errorMessage?: string;
   onChange: any;
 }
 
@@ -17,6 +18,7 @@ export const RegisterInput: React.FC<RegisterInputProps> = ({
   type,
   value,
   form,
+  errorMessage,
   onChange,
 }) => {
   return (
@@ -32,13 +34,13 @@ export const RegisterInput: React.FC<RegisterInputProps> = ({
         value={value}
         onChange={onChange}
       />
-      {form[name].errorMessage && (
+      {errorMessage && (
         <div className="register-input__error-container">
           <div className="register-input__error-img-box">
             <img src="/warning 3.svg" alt="" />
           </div>
           <p className="register-input__error-message">
-            {form[name].errorMessage}
+            {errorMessage}
           </p>
         </div>
       )}
