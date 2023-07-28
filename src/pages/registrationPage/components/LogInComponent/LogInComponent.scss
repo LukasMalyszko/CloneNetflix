@@ -1,0 +1,219 @@
+.log-component {
+  --margin-on-page: 32px;
+  --checkbox-size: 20px;
+
+  display: flex;
+
+  & &__logo-container {
+    path {
+      fill: var(--color-black-900);
+    }
+    margin-bottom: var(--margin-on-page);
+  }
+
+  & &__log-section {
+    margin: 56px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-white);
+    padding: 56px 80px 100px;
+    max-width: 440px;
+    width: 100%;
+    color: var(--color-black-900);
+  }
+
+  & &__header {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    margin-bottom: 16px;
+  }
+
+  button {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    height: 57px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    margin-bottom: var(--margin-on-page);
+    padding: 0;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &[disabled] {
+      cursor: not-allowed;
+      background-color: var(--color-black-300);
+      &:hover {
+        background-color: var(--color-black-300);
+      }
+    }
+
+    &[data-loader="0"] {
+      .text {
+        display: flex;
+        align-items: center;
+      }
+
+      .loader {
+        display: none;
+      }
+    }
+
+    &[data-loader="1"] {
+      .text {
+        display: none;
+      }
+
+      .loader {
+        display: block;
+        max-width: 42px;
+        max-height: 42px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  & &__fb-button {
+    background: #445a90;
+    margin-bottom: 18px;
+
+    &:hover {
+      background-color: #3e5288;
+    }
+    &:active {
+      background-color: #3e5288;
+    }
+  }
+
+  & &__google-button {
+    background-color: transparent;
+    color: var(--color-black-900);
+    border: 1px solid var(--color-black-100);
+
+    &:hover {
+      border-color: var(--color-black-200);
+    }
+    &:active {
+      border-color: var(--color-black-300);
+    }
+    path {
+      fill: var(--color-black-100);
+    }
+  }
+
+  & &__login-inputs {
+    width: 100%;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  & &__link {
+    margin-block: 16px 32px;
+    align-self: flex-start;
+    a {
+      color: #000;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: -0.14px;
+    }
+  }
+
+  & &__checkbox-container {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 18px;
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 120%; /* 16.8px */
+    letter-spacing: -0.14px;
+    width: 100%;
+  }
+
+  & &__checkbox {
+    cursor: pointer;
+    appearance: none;
+    border-radius: 5px;
+    border: 1px solid var(--color-black-100);
+    height: var(--checkbox-size);
+    max-width: var(--checkbox-size);
+    width: 100%;
+    background: url(/check.svg) no-repeat center;
+    transition: 0.2s;
+
+    &:checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    &:hover {
+      border-color: var(--color-black-200);
+    }
+  }
+
+  & &__primary-button {
+    background-color: var(--primary-color);
+    max-width: 188px;
+    align-self: flex-end;
+
+    &:hover {
+      background-color: var(--color-red-700);
+    }
+    &:active {
+      background-color: var(--color-red-900);
+    }
+  }
+
+  & &__break-line {
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-black-100);
+  }
+
+  & &__button-link {
+    width: 100%;
+    text-decoration: none;
+  }
+
+  & &__footer-text {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    margin-block: 32px 24px;
+  }
+
+  & &__secondary-button {
+    background-color: transparent;
+    color: var(--color-black-300);
+    border: 1px solid var(--color-black-100);
+
+    
+    &:hover {
+      border-color: var(--color-black-200);
+    }
+
+    &:active {
+      border-color: var(--color-black-300);
+    }
+  }
+}

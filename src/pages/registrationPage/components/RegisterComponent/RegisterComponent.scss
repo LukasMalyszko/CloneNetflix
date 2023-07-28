@@ -13,8 +13,6 @@ body {
   max-width: 440px;
   color: var(--color-black-900);
 
-  
-
   & &__header {
     text-align: center;
     font-size: 32px;
@@ -50,8 +48,7 @@ body {
       cursor: not-allowed;
       background-color: var(--color-black-300);
       &:hover {
-      background-color: var(--color-black-300);
-
+        background-color: var(--color-black-300);
       }
     }
 
@@ -110,8 +107,6 @@ body {
     }
   }
 
-  
-
   & &__form {
     display: flex;
     flex-direction: column;
@@ -152,11 +147,10 @@ body {
     line-height: 120%;
     letter-spacing: -0.14px;
     margin-bottom: var(--margin-on-page);
-    // position: relative;
 
     label {
       cursor: pointer;
-      transition: .2s;
+      transition: 0.2s;
     }
   }
 
@@ -191,8 +185,8 @@ body {
     line-height: normal;
     margin-bottom: 10px;
   }
-  
- .error-message {
+
+  .error-message {
     padding: 0;
     margin: 0;
   }

@@ -1,4 +1,4 @@
-.register-input {
+.log-input-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -39,19 +39,5 @@
     }
   }
 
-  & &__error-container {
-    position: absolute;
-    bottom: -26px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #b5120d;
-    font-size: 14px;
-    line-height: normal;
-  }
-  
-  & &__error-message {
-    padding: 0;
-    margin: 0;
-  }
+ 
 }
