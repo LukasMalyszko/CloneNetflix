@@ -6,7 +6,7 @@ import { LogoNetflix } from "../LogoNetflix";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, showLoginError, googleProvider } from "../../../../config/firebase";
+import { auth, googleProvider } from "../../../../config/firebase";
 
 
 export const LogInComponent = () => {
@@ -102,7 +102,7 @@ export const LogInComponent = () => {
       navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
-      showLoginError(error.message);
+      // showLoginError(error.message);
       console.log(error.message);
     }
   };
