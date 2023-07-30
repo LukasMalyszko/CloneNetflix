@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { AuthErrorCodes, getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { AuthErrorCodes, getAuth, GoogleAuthProvider } from "firebase/auth";
 import { FacebookAuthProvider } from "firebase/auth/cordova";
 
 const firebaseConfig = {
@@ -25,4 +25,5 @@ export const showLoginError = (error: any) => {
     loginErrorMessage = `Error: ${error.message}`
   }
 }
+
 

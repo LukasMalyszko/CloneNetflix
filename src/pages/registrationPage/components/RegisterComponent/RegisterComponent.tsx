@@ -183,7 +183,7 @@ export const RegisterComponent = () => {
             placeholder="Enter you email"
             form={form}
             onChange={handleDebounceChange}
-            errorMessage={form.email.errorMessage }
+            errorMessage={form.email.errorMessage}
           />
 
           <RegisterInput

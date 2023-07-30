@@ -4,6 +4,7 @@ import { SwiperLoop } from "./components/Swipers/SwiperLoop/SwiperLoop";
 import { showsProps } from "./components/Swipers/Intetfaces";
 import "./components/Swipers/SwiperNoLoop/SwiperNoLoop.scss";
 import "./components/Swipers/SwiperLoop/SwiperLoop.scss";
+import "./DashboardPage.scss";
 
 export const DashboardPage = () => {
   const showsArrayAppreciated: Array<showsProps> = [
@@ -212,7 +213,7 @@ export const DashboardPage = () => {
   ];
 
   return (
-    <>
+    <div className="dashboard-page">
       <Header />
 
       <div className="swiper-container">
@@ -237,6 +238,6 @@ export const DashboardPage = () => {
           showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
         />
       </div>
-    </>
+    </div>
   );
 };

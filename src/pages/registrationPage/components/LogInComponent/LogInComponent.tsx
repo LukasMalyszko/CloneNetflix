@@ -5,8 +5,9 @@ import { LogInputContainer } from "../LogInputContainer/LogInputContainer";
 import { LogoNetflix } from "../LogoNetflix";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, showLoginError } from "../../../../config/firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, showLoginError, googleProvider } from "../../../../config/firebase";
+
 
 export const LogInComponent = () => {
   const emailLabel = "Email address or username";
@@ -106,6 +107,18 @@ export const LogInComponent = () => {
     }
   };
 
+  const signInWithGoogle = async () => {
+    console.log(auth.currentUser?.email);
+
+    try {
+      let respone = await signInWithPopup(auth, googleProvider);
+      console.log(respone);
+      navigate("/dashboard");
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="log-component">
       <div className="log-component__log-section">
@@ -124,6 +137,7 @@ export const LogInComponent = () => {
           className="log-component__google-button"
           image={"/google 1.svg"}
           text="Log in with Google"
+          onClick={signInWithGoogle}
         />
         <BreakLine />
         <form className="log-component__login-form" onSubmit={handleSubmit}>
