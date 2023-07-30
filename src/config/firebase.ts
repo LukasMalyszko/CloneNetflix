@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { AuthErrorCodes, getAuth, GoogleAuthProvider } from "firebase/auth";
+import {  getAuth, GoogleAuthProvider } from "firebase/auth";
 import { FacebookAuthProvider } from "firebase/auth/cordova";
 
 const firebaseConfig = {
@@ -17,13 +17,13 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const facebookProvider = new FacebookAuthProvider();
 
-export const showLoginError = (error: any) => {
-  let loginErrorMessage = "";
-  if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
-    loginErrorMessage = "Wrong password. Try again."
-  } else {
-    loginErrorMessage = `Error: ${error.message}`
-  }
-}
+// export const showLoginError = (error: any) => {
+//   let loginErrorMessage = "";
+//   if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
+//     loginErrorMessage = "Wrong password. Try again."
+//   } else {
+//     loginErrorMessage = `Error: ${error.message}`
+//   }
+// }
 
 
