@@ -11,6 +11,7 @@ import {
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { LogoNetflix } from "../LogoNetflix";
 import { BreakLine } from "../BreakLine/BreakLine";
+import "./ButtonStyles.scss";
 
 export const RegisterComponent = () => {
   const [dataLoading, setDataLoading] = useState<number>(0);

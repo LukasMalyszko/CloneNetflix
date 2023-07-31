@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../../../config/firebase";
-
+import "./ButtonsStyle.scss";
 
 export const LogInComponent = () => {
   const emailLabel = "Email address or username";
@@ -40,19 +40,19 @@ export const LogInComponent = () => {
   });
 
   const handleChange = (value: string, name: string) => {
-    const validator = basicValidator[name];
+    // const validator = basicValidator[name];
 
     let isValid = true;
     let errorMessage = "";
 
-    if (validator) {
-      const validatorValue = validator(value);
+    // if (validator) {
+    //   const validatorValue = validator(value);
 
-      if (typeof validatorValue === "string") {
-        isValid = !validatorValue;
-        errorMessage = validatorValue;
-      }
-    }
+    //   if (typeof validatorValue === "string") {
+    //     isValid = !validatorValue;
+    //     errorMessage = validatorValue;
+    //   }
+    // }
 
     setForm((prevForm) => ({
       ...prevForm,
@@ -74,19 +74,19 @@ export const LogInComponent = () => {
     // }
   };
 
-  interface IBasicValidator {
-    [key: string]: (value: string) => boolean | string | void;
-  }
+  // interface IBasicValidator {
+  //   [key: string]: (value: string) => boolean | string | void;
+  // }
 
-  const basicValidator: IBasicValidator = {
-    email: (value) =>
-      /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(String(value)) ||
-      "Incorrect e-mail",
+  // const basicValidator: IBasicValidator = {
+  //   email: (value) =>
+  //     /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(String(value)) ||
+  //     "Incorrect e-mail",
 
-    password: (value) =>
-      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(String(value)) ||
-      "Incorrect e-mail or password ",
-  };
+  //   password: (value) =>
+  //     /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(String(value)) ||
+  //     "Incorrect e-mail or password ",
+  // };
 
   const handleChangeInput = (value: string, name: string) => {
     handleChange(value, name);

@@ -1,0 +1,84 @@
+.log-component {
+    button {
+       width: 100%;
+       display: flex;
+       gap: 20px;
+       height: 57px;
+       justify-content: center;
+       align-items: center;
+       border-radius: 50px;
+       border: none;
+       color: #fff;
+       font-size: 16px;
+       font-style: normal;
+       font-weight: 500;
+       line-height: normal;
+       letter-spacing: -0.32px;
+       margin-bottom: var(--margin-on-page);
+       padding: 0;
+       cursor: pointer;
+       transition: 0.2s;
+   
+       &[disabled] {
+         cursor: not-allowed;
+         background-color: var(--color-black-300);
+         &:hover {
+           background-color: var(--color-black-300);
+         }
+       }
+   
+       &[data-loader="0"] {
+         .text {
+           display: flex;
+           align-items: center;
+         }
+   
+         .loader {
+           display: none;
+         }
+       }
+   
+       &[data-loader="1"] {
+         .text {
+           display: none;
+         }
+   
+         .loader {
+           display: block;
+           max-width: 42px;
+           max-height: 42px;
+           img {
+             width: 100%;
+           }
+         }
+       }
+     }
+   
+     & &__fb-button {
+       background: #445a90;
+       margin-bottom: 18px;
+   
+       &:hover {
+         background-color: #3e5288;
+       }
+       &:active {
+         background-color: #3e5288;
+       }
+     }
+   
+     & &__google-button {
+       background-color: transparent;
+       color: var(--color-black-900);
+       border: 1px solid var(--color-black-100);
+   
+       &:hover {
+         border-color: var(--color-black-200);
+       }
+       &:active {
+         border-color: var(--color-black-300);
+       }
+       path {
+         fill: var(--color-black-100);
+       }
+     }
+    }
