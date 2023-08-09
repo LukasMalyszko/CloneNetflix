@@ -28,8 +28,13 @@ body {
     padding-left: 64px;
   }
 
-  & &__img-logo-container {
+  & &__top {
+    display: flex;
+    justify-content: space-between;
     padding: 24px 0;
+  }
+  
+  & &__img-logo-container {
     margin-bottom: 130px;
   }
 

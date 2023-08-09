@@ -1,7 +1,19 @@
 // import React from "react";
 import "../Header/Header.scss";
+// import { auth } from "../../../../config/firebase";
+import { useSelector } from "react-redux";
+// import { useState } from "react";
+import {
+  // setActiveUser,
+  // setUserLogOutState,
+  selectUserName,
+  selectUserEmail,
+} from "../../../../redux/userSlice";
 
 export const Header = () => {
+  const userName = useSelector(selectUserName);
+  const userEmail = useSelector(selectUserEmail);
+
   return (
     <div className="dashboard-header-component">
       <div className="dashboard-header-component__top-gradient"></div>
@@ -9,8 +21,14 @@ export const Header = () => {
         <img src="/wednesday.png" alt="Wednesday" />
       </div>
       <div className="dashboard-header-component__header-content">
-        <div className="dashboard-header-component__img-logo-container">
-          <img src="/NETFLIX.svg" alt="netflix logo" />
+        <div className="dashboard-header-component__top">
+          <div className="dashboard-header-component__img-logo-container">
+            <img src="/NETFLIX.svg" alt="netflix logo" />
+          </div>
+          <div className="dashboard-header-component__display-name">
+            {`Witaj
+            ${!userName ? userEmail : userName}`}
+          </div>
         </div>
         <div className="dashboard-header-component__rating-container">
           <div className="dashboard-header-component__img-container">
@@ -29,14 +47,14 @@ export const Header = () => {
           wrogów w Akademii Nevermore.
         </div>
         <div className="dashboard-header-component__buttons-container">
-            <button className="dashboard-header-component__primary-button">
-                <img src="/play.svg" alt="play icon" />
-                <div>Odtwórz</div>
-            </button>
-            <button className="dashboard-header-component__secondary-button">
-                <img src="/info-circle.svg" alt="play icon" />
-                <div>Więcej informacji</div>
-            </button>
+          <button className="dashboard-header-component__primary-button">
+            <img src="/play.svg" alt="play icon" />
+            <div>Odtwórz</div>
+          </button>
+          <button className="dashboard-header-component__secondary-button">
+            <img src="/info-circle.svg" alt="play icon" />
+            <div>Więcej informacji</div>
+          </button>
         </div>
       </div>
     </div>

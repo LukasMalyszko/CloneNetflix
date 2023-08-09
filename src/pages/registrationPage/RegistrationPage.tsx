@@ -5,7 +5,7 @@ import { ImageComponent } from "./components/ImageComponent/ImageComponent";
 import "./components/ImageComponent/ImageComponent.scss";
 import "./RegistrationPage.scss";
 import "./components/BreakLine/BreakLine.scss";
-import "./components/LogInComponent/LogInComponent.scss";
+import "../LogInPage/LogInPage.scss";
 
 export const RegistrationPage = () => {
   return (

@@ -8,10 +8,13 @@ import {
   googleProvider,
   facebookProvider,
 } from "../../../../config/firebase";
+import { useDispatch } from "react-redux";
+import { setActiveUser } from "../../../../redux/userSlice";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { LogoNetflix } from "../LogoNetflix";
 import { BreakLine } from "../BreakLine/BreakLine";
 import "./ButtonStyles.scss";
+import { Link } from "react-router-dom";
 
 export const RegisterComponent = () => {
   const [dataLoading, setDataLoading] = useState<number>(0);
@@ -123,18 +126,27 @@ export const RegisterComponent = () => {
     try {
       let respone = await createUserWithEmailAndPassword(auth, email, password);
       console.log(respone);
-      return respone;
+      // return respone;
     } catch (error: any) {
       alert(error.message);
     }
   };
 
+  const dispatch = useDispatch();
+
+
   const signInWithGoogle = async () => {
-    console.log(auth.currentUser?.email);
+    // console.log(auth.currentUser?.email);
 
     try {
-      let respone = await signInWithPopup(auth, googleProvider);
-      console.log(respone);
+      let response = await signInWithPopup(auth, googleProvider);
+      console.log(response);
+      dispatch(
+        setActiveUser({
+          userName: response.user.email as string,
+          userEmail: response.user.email as string,
+        })
+      );
     } catch (error: any) {
       console.log(error.message);
     }
@@ -273,9 +285,9 @@ export const RegisterComponent = () => {
 
         <div className="register-component__log-container">
           Have an account?{" "}
-          <a href="/login" className="register-component__link">
+          <Link to="/" className="register-component__link">
             Log in
-          </a>
+          </Link>
           .
         </div>
       </form>

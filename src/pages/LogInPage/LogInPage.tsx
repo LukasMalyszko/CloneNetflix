@@ -1,12 +1,23 @@
-import { BreakLine } from "../BreakLine/BreakLine";
-import { ImageComponent } from "../ImageComponent/ImageComponent";
-import { LogInButton } from "../LogInButton";
-import { LogInputContainer } from "../LogInputContainer/LogInputContainer";
-import { LogoNetflix } from "../LogoNetflix";
+import { BreakLine } from "../registrationPage/components/BreakLine/BreakLine";
+import { ImageComponent } from "../registrationPage/components/ImageComponent/ImageComponent";
+import { LogInButton } from "../registrationPage/components/LogInButton";
+import { LogInputContainer } from "../registrationPage/components/LogInputContainer/LogInputContainer";
+import { LogoNetflix } from "../registrationPage/components/LogoNetflix";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../../../../config/firebase";
+import { auth, googleProvider } from "../../config/firebase";
+import { useDispatch,
+  //  useSelector,
+   } from "react-redux";
+import {
+  setActiveUser,
+  // setUserLogOutState,
+  // selectUserName,
+  // selectUserEmail,
+} from "../../redux/userSlice";
+
 import "./ButtonsStyle.scss";
 
 export const LogInComponent = () => {
@@ -40,20 +51,11 @@ export const LogInComponent = () => {
   });
 
   const handleChange = (value: string, name: string) => {
-    // const validator = basicValidator[name];
 
     let isValid = true;
     let errorMessage = "";
 
-    // if (validator) {
-    //   const validatorValue = validator(value);
-
-    //   if (typeof validatorValue === "string") {
-    //     isValid = !validatorValue;
-    //     errorMessage = validatorValue;
-    //   }
-    // }
-
+    
     setForm((prevForm) => ({
       ...prevForm,
       [name]: {
@@ -69,53 +71,53 @@ export const LogInComponent = () => {
     event.preventDefault();
     handleChange(form.email.value, "email");
     handleChange(form.password.value, "password");
-    // if (isFormValid) {
     console.log(form);
-    // }
   };
 
-  // interface IBasicValidator {
-  //   [key: string]: (value: string) => boolean | string | void;
-  // }
-
-  // const basicValidator: IBasicValidator = {
-  //   email: (value) =>
-  //     /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(String(value)) ||
-  //     "Incorrect e-mail",
-
-  //   password: (value) =>
-  //     /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(String(value)) ||
-  //     "Incorrect e-mail or password ",
-  // };
+ 
 
   const handleChangeInput = (value: string, name: string) => {
     handleChange(value, name);
   };
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
 
   const loginEmailPassword = async () => {
     const loginEmail = form.email.value;
     const LoginPassword = form.password.value;
     try {
-      await signInWithEmailAndPassword(auth, loginEmail, LoginPassword);
-      navigate("/dashboard");
+      let response = await signInWithEmailAndPassword(auth, loginEmail, LoginPassword);
+      dispatch(
+        setActiveUser({
+          userName: response.user.email as string,
+          userEmail: response.user.email as string,
+        })
+      );
+      
+      // navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
       // showLoginError(error.message);
-      console.log(error.message);
     }
   };
+  // console.log(userName, userEmail)
 
   const signInWithGoogle = async () => {
-    console.log(auth.currentUser?.email);
+    // console.log(auth.currentUser?.email);
 
     try {
-      let respone = await signInWithPopup(auth, googleProvider);
-      console.log(respone);
-      navigate("/dashboard");
+      let response = await signInWithPopup(auth, googleProvider);
+      // console.log(respone);
+      dispatch(
+        setActiveUser({
+          userName: response.user.displayName as string,
+          userEmail: response.user.email as string,
+        })
+      );
+      // navigate("/dashboard");
     } catch (error: any) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
@@ -197,11 +199,11 @@ export const LogInComponent = () => {
         <div className="log-component__footer-text">
           You dont have an account yet?
         </div>
-        <a className="log-component__button-link" href="/">
+        <Link to="/registration-page" className="log-component__button-link">
           <button className="log-component__secondary-button">
             Sign up for Netflix
           </button>
-        </a>
+        </Link>
       </div>
       <ImageComponent src="/netflix-image.png" name="Netflix logo" />
     </div>
