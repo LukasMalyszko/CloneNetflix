@@ -5,18 +5,11 @@ import { LogInputContainer } from "../registrationPage/components/LogInputContai
 import { LogoNetflix } from "../registrationPage/components/LogoNetflix";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../config/firebase";
-import { useDispatch,
-  //  useSelector,
-   } from "react-redux";
-import {
-  setActiveUser,
-  // setUserLogOutState,
-  // selectUserName,
-  // selectUserEmail,
-} from "../../redux/userSlice";
+import { useDispatch } from "react-redux";
+import { setActiveUser } from "../../redux/userSlice";
 
 import "./ButtonsStyle.scss";
 
@@ -51,11 +44,9 @@ export const LogInComponent = () => {
   });
 
   const handleChange = (value: string, name: string) => {
-
     let isValid = true;
     let errorMessage = "";
 
-    
     setForm((prevForm) => ({
       ...prevForm,
       [name]: {
@@ -74,28 +65,30 @@ export const LogInComponent = () => {
     console.log(form);
   };
 
- 
-
   const handleChangeInput = (value: string, name: string) => {
     handleChange(value, name);
   };
 
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
 
   const loginEmailPassword = async () => {
     const loginEmail = form.email.value;
     const LoginPassword = form.password.value;
     try {
-      let response = await signInWithEmailAndPassword(auth, loginEmail, LoginPassword);
+      let response = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        LoginPassword
+      );
       dispatch(
         setActiveUser({
           userName: response.user.email as string,
           userEmail: response.user.email as string,
         })
       );
-      
-      // navigate("/dashboard");
+
+      navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
       // showLoginError(error.message);

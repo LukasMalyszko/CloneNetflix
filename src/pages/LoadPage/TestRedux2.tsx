@@ -6,14 +6,14 @@ import {
   setActiveUser,
   setUserLogOutState,
   selectUserName,
-  selectUserEmail,
+  // selectUserEmail,
 } from "../../redux/userSlice";
 import { signInWithPopup } from "firebase/auth";
 
 export const TestRedux2 = () => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
-  const userEmail = useSelector(selectUserEmail);
+  // const userEmail = useSelector(selectUserEmail);
 
   const handleSignIn = () => {
     signInWithPopup(auth, googleProvider).then((result) => {

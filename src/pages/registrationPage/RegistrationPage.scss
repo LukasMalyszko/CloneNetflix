@@ -1,11 +1,17 @@
 .registration-page {
-    display: flex;
+  display: flex;
 
-    .logo-container {
-        margin-bottom: 32px;
-    
-        path {
-          fill: var(--color-black-900);
-        }
-      }
+  .logo-container {
+    margin-bottom: 32px;
+
+    path {
+      fill: var(--color-black-900);
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .image-component {
+      display: none;
+    }
+  }
 }

@@ -5,6 +5,7 @@ import { showsProps } from "./components/Swipers/Intetfaces";
 import "./components/Swipers/SwiperNoLoop/SwiperNoLoop.scss";
 import "./components/Swipers/SwiperLoop/SwiperLoop.scss";
 import "./DashboardPage.scss";
+import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
 
 export const DashboardPage = () => {
   const showsArrayAppreciated: Array<showsProps> = [
@@ -238,6 +239,7 @@ export const DashboardPage = () => {
           showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
         />
       </div>
+      <LogOutComponent />
     </div>
   );
 };

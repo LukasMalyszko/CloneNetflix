@@ -150,6 +150,12 @@
     }
   }
 
+  @media (max-width: 1080px) {
+    .image-component {
+      display: none;
+    }
+  }
+
   @media (max-width: 460px) {
     & &__log-section {
       padding: 0 16px;
