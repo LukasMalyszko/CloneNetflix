@@ -3,13 +3,13 @@ import { Routes, Route, Link } from "react-router-dom";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import { RegistrationPage } from "./pages/registrationPage/RegistrationPage";
 import { LogInComponent } from "./pages/LogInPage/LogInPage";
-
-
+import { NotFound } from "./pages/NotFound/NotFound";
+import { auth } from "./config/firebase";
 import { LoadPage } from "./pages/LoadPage/LoadPage";
 
 function App() {
-  // console.log(auth);
- 
+  const user = auth.currentUser;
+
   return (
     <>
       <nav style={{ color: "red", zIndex: 4, position: "absolute" }}>
@@ -22,15 +22,19 @@ function App() {
         <Link to="/registration-page">
           <div>register</div>
         </Link>
-
       </nav>
 
       <Routes>
         <Route path="/" index element={<LoadPage />} />
         <Route path="/login" element={<LogInComponent />} />
         <Route path="/registration-page" element={<RegistrationPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="*" element={<h3>404 not found!</h3>} />
+        <Route
+          path="/dashboard"
+          element={
+              <DashboardPage user={user} />
+          }
+        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

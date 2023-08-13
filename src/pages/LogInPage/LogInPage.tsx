@@ -83,7 +83,7 @@ export const LogInComponent = () => {
       );
       dispatch(
         setActiveUser({
-          userName: response.user.email as string,
+          userName: response.user.displayName as string,
           userEmail: response.user.email as string,
         })
       );
@@ -91,24 +91,20 @@ export const LogInComponent = () => {
       navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
-      // showLoginError(error.message);
     }
   };
-  // console.log(userName, userEmail)
 
   const signInWithGoogle = async () => {
-    // console.log(auth.currentUser?.email);
 
     try {
       let response = await signInWithPopup(auth, googleProvider);
-      // console.log(respone);
       dispatch(
         setActiveUser({
           userName: response.user.displayName as string,
           userEmail: response.user.email as string,
         })
       );
-      // navigate("/dashboard");
+      navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
     }

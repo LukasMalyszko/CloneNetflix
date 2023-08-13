@@ -14,7 +14,7 @@ import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { LogoNetflix } from "../LogoNetflix";
 import { BreakLine } from "../BreakLine/BreakLine";
 import "./ButtonStyles.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const RegisterComponent = () => {
   const [dataLoading, setDataLoading] = useState<number>(0);
@@ -118,22 +118,27 @@ export const RegisterComponent = () => {
       form.password.value !== value ? "Passwords are not the same" : "",
   };
 
+  const navigate = useNavigate();
+
   const signIn = async () => {
     const email: any = form.email.value;
     const password: any = form.password.value;
-    console.log(auth.currentUser?.email);
 
     try {
-      let respone = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(respone);
-      // return respone;
+      let response = await createUserWithEmailAndPassword(auth, email, password);
+      dispatch(
+        setActiveUser({
+          userName: response.user.displayName as string,
+          userEmail: response.user.email as string,
+        })
+      );
+      navigate("/login");
     } catch (error: any) {
       alert(error.message);
     }
   };
 
   const dispatch = useDispatch();
-
 
   const signInWithGoogle = async () => {
     // console.log(auth.currentUser?.email);
@@ -143,17 +148,18 @@ export const RegisterComponent = () => {
       console.log(response);
       dispatch(
         setActiveUser({
-          userName: response.user.email as string,
+          userName: response.user.displayName as string,
           userEmail: response.user.email as string,
         })
       );
+      navigate("/dashboard");
     } catch (error: any) {
       console.log(error.message);
     }
   };
 
   const signInWithFb = async () => {
-    console.log(auth.currentUser?.email);
+    // console.log(auth.currentUser?.email);
 
     try {
       let respone = await signInWithPopup(auth, facebookProvider);

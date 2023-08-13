@@ -5,16 +5,11 @@ import "./LoadPage.scss";
 import { useDispatch } from "react-redux";
 import {
   setActiveUser,
-  // setUserLogOutState,
-  // selectUserName,
-  // selectUserEmail,
 } from "../../redux/userSlice";
 import { ImageComponent } from "../registrationPage/components/ImageComponent/ImageComponent";
 
 export const LoadPage = () => {
   const dispatch = useDispatch();
-  // const userName = useSelector(selectUserName);
-  // const userEmail = useSelector(selectUserEmail);
 
 
   const navigate = useNavigate();
@@ -23,7 +18,6 @@ export const LoadPage = () => {
     const fetchData = async () => {
       await auth.authStateReady();
 
-      console.log("user ", auth.currentUser);
       if (auth.currentUser) {
         dispatch(
           setActiveUser({
@@ -41,10 +35,8 @@ export const LoadPage = () => {
 
   return (
     <>
-      <ImageComponent src="netflix-image" name="netflix logo" />
-      <div className="loader-container">
-        <img src="/loader-red.svg" className="loader" />
-      </div>
+      <ImageComponent src="netflix-image.png" name="netflix logo" />
+      
     </>
   );
 };

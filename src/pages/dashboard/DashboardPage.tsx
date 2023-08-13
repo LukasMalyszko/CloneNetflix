@@ -6,8 +6,15 @@ import "./components/Swipers/SwiperNoLoop/SwiperNoLoop.scss";
 import "./components/Swipers/SwiperLoop/SwiperLoop.scss";
 import "./DashboardPage.scss";
 import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { auth } from "../../config/firebase";
 
-export const DashboardPage = () => {
+interface DashboardPageProps {
+  user: any;
+}
+
+export const DashboardPage: React.FC<DashboardPageProps> = ({ user }) => {
   const showsArrayAppreciated: Array<showsProps> = [
     {
       id: 1,
@@ -212,6 +219,19 @@ export const DashboardPage = () => {
       src: "/wiking.png",
     },
   ];
+
+  const navigate = useNavigate();
+  user = auth.currentUser;
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/", { replace: true });
+    } else {
+      console.log("dash: ", user);
+    }
+      
+  }, []);
+
 
   return (
     <div className="dashboard-page">

@@ -1,0 +1,12 @@
+.not-found-page {
+  padding-top: 100px;
+  display: flex;
+  color: var(--color-black-900);
+  & &__wrapper {
+    margin: auto;
+  }
+
+  h2 {
+    text-align: center;
+  }
+}
