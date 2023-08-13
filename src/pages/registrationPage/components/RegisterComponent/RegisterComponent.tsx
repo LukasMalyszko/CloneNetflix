@@ -141,7 +141,6 @@ export const RegisterComponent = () => {
   const dispatch = useDispatch();
 
   const signInWithGoogle = async () => {
-    // console.log(auth.currentUser?.email);
 
     try {
       let response = await signInWithPopup(auth, googleProvider);
@@ -159,7 +158,6 @@ export const RegisterComponent = () => {
   };
 
   const signInWithFb = async () => {
-    // console.log(auth.currentUser?.email);
 
     try {
       let respone = await signInWithPopup(auth, facebookProvider);

@@ -1,8 +1,26 @@
+:root {
+    --loader-size: 100px;
+}
 
-.loader-container {
+html, body, .load-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  
+  & &__wrapper {
+    margin: auto;
+  }
+
+  & &__load-container {
     display: flex;
-    height: 100%;
-    padding-top: 200px;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
+
+    img {
+        max-width: var(--loader-size);
+        max-height: var(--loader-size);
+    }
+
+  }
 }

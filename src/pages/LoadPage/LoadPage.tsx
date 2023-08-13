@@ -3,14 +3,11 @@ import { auth } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
 import "./LoadPage.scss";
 import { useDispatch } from "react-redux";
-import {
-  setActiveUser,
-} from "../../redux/userSlice";
+import { setActiveUser } from "../../redux/userSlice";
 import { ImageComponent } from "../registrationPage/components/ImageComponent/ImageComponent";
 
 export const LoadPage = () => {
   const dispatch = useDispatch();
-
 
   const navigate = useNavigate();
 
@@ -34,9 +31,15 @@ export const LoadPage = () => {
   }, []);
 
   return (
-    <>
-      <ImageComponent src="netflix-image.png" name="netflix logo" />
-      
-    </>
+    <div className="load-page">
+      <div className="load-page__wrapper">
+        <div className="load-page__img-container">
+          <img src="/netflix-black.png" alt="netflix logo" />
+        </div>
+        <div className="load-page__load-container">
+          <img src="/loader-red.svg" />
+        </div>
+      </div>
+    </div>
   );
 };
