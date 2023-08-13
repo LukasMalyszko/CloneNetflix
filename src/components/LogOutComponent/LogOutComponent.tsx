@@ -8,13 +8,13 @@ export const LogOutComponent = () => {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-      navigate("/login");
-      await auth
-      .signOut()
-      .then(() => {
-          dispatch(setUserLogOutState());
-        })
-        .catch((err) => alert(err.message));
+    await auth
+    .signOut()
+    .then(() => {
+      dispatch(setUserLogOutState());
+    })
+    .catch((err) => alert(err.message));
+    navigate("/login");
   };
   return <button onClick={handleSignOut}>Logout</button>;
 };
