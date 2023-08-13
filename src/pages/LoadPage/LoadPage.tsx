@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./LoadPage.scss";
 import { useDispatch } from "react-redux";
 import { setActiveUser } from "../../redux/userSlice";
-import { ImageComponent } from "../registrationPage/components/ImageComponent/ImageComponent";
 
 export const LoadPage = () => {
   const dispatch = useDispatch();
