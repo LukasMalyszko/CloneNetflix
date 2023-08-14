@@ -21,9 +21,9 @@ export const LoadPage = () => {
             userEmail: auth.currentUser.email as string,
           })
         );
-        navigate("/dashboard");
+        setTimeout(() => navigate("/dashboard"), 1500);
       } else {
-        navigate("/login");
+        setTimeout(() => navigate("/login"), 1500);
       }
     };
     fetchData();

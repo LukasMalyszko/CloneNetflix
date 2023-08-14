@@ -257,8 +257,8 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ user }) => {
         <SwiperNoLoop
           showsArray={showsArrayTopTenToday}
           showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
-        />
-      </div>
+          />
+          </div>
       <LogOutComponent />
     </div>
   );

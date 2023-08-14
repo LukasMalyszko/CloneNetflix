@@ -2,6 +2,7 @@ import { auth } from "../../config/firebase";
 import { useDispatch } from "react-redux";
 import { setUserLogOutState } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import "./LogOutComponent.scss";
 
 export const LogOutComponent = () => {
   const dispatch = useDispatch();
@@ -16,5 +17,5 @@ export const LogOutComponent = () => {
     .catch((err) => alert(err.message));
     navigate("/login");
   };
-  return <button onClick={handleSignOut}>Logout</button>;
+  return <button className="logout-button" onClick={handleSignOut}>Logout</button>;
 };
