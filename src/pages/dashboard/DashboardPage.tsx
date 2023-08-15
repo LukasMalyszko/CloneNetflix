@@ -1,20 +1,15 @@
+import "./components/Swipers/SwiperNoLoop/SwiperNoLoop.scss";
+import "./components/Swipers/SwiperLoop/SwiperLoop.scss";
+import "./DashboardPage.scss";
 import { Header } from "./components/Header/Header";
 import { SwiperNoLoop } from "./components/Swipers/SwiperNoLoop/SwiperNoLoop";
 import { SwiperLoop } from "./components/Swipers/SwiperLoop/SwiperLoop";
 import { showsProps } from "./components/Swipers/Intetfaces";
-import "./components/Swipers/SwiperNoLoop/SwiperNoLoop.scss";
-import "./components/Swipers/SwiperLoop/SwiperLoop.scss";
-import "./DashboardPage.scss";
 import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { auth } from "../../config/firebase";
 
-interface DashboardPageProps {
-  user: any;
-}
 
-export const DashboardPage: React.FC<DashboardPageProps> = ({ user }) => {
+
+export const DashboardPage = () => {
   const showsArrayAppreciated: Array<showsProps> = [
     {
       id: 1,
@@ -220,17 +215,6 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ user }) => {
     },
   ];
 
-  const navigate = useNavigate();
-  user = auth.currentUser;
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/", { replace: true });
-    } else {
-      console.log("dash: ", user);
-    }
-      
-  }, []);
 
 
   return (

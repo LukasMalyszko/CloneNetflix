@@ -1,8 +1,8 @@
+import "./LogOutComponent.scss";
 import { auth } from "../../config/firebase";
 import { useDispatch } from "react-redux";
 import { setUserLogOutState } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
-import "./LogOutComponent.scss";
 
 export const LogOutComponent = () => {
   const dispatch = useDispatch();

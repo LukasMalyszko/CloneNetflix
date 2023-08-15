@@ -1,13 +1,16 @@
 import "../src/global-styles/style.scss";
-import { Routes, Route,
-  //  Link 
-  } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  //  Link
+} from "react-router-dom";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import { RegistrationPage } from "./pages/registrationPage/RegistrationPage";
 import { LogInComponent } from "./pages/LogInPage/LogInPage";
 import { NotFound } from "./pages/NotFound/NotFound";
 import { auth } from "./config/firebase";
 import { LoadPage } from "./pages/LoadPage/LoadPage";
+import { ProtectedRoute } from "./utils/ProtectedRoute/ProtectedRoute";
 
 function App() {
   const user = auth.currentUser;
@@ -32,8 +35,6 @@ function App() {
 
   return (
     <>
-
-    
       {/* <Navigation /> */}
 
       <Routes>
@@ -43,7 +44,9 @@ function App() {
         <Route
           path="/dashboard"
           element={
-              <DashboardPage user={user} />
+            <ProtectedRoute user={user}>
+              <DashboardPage />
+            </ProtectedRoute>
           }
         />
         <Route path="*" element={<NotFound />} />

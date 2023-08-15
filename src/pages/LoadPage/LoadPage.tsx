@@ -1,7 +1,7 @@
+import "./LoadPage.scss";
 import { useEffect } from "react";
 import { auth } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
-import "./LoadPage.scss";
 import { useDispatch } from "react-redux";
 import { setActiveUser } from "../../redux/userSlice";
 
