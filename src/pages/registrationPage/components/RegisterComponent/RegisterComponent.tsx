@@ -1,3 +1,4 @@
+import "./ButtonStyles.scss";
 import { useState, useMemo } from "react";
 import { RegisterInput } from "../RegisterInput/RegisterInput";
 import { LogInButton } from "../LogInButton";
@@ -13,7 +14,6 @@ import { setActiveUser } from "../../../../redux/userSlice";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { LogoNetflix } from "../LogoNetflix";
 import { BreakLine } from "../BreakLine/BreakLine";
-import "./ButtonStyles.scss";
 import { Link, useNavigate } from "react-router-dom";
 
 export const RegisterComponent = () => {
@@ -121,8 +121,8 @@ export const RegisterComponent = () => {
   const navigate = useNavigate();
 
   const signIn = async () => {
-    const email: any = form.email.value;
-    const password: any = form.password.value;
+    const email = form.email.value as string;
+    const password = form.password.value as string;
 
     try {
       let response = await createUserWithEmailAndPassword(auth, email, password);

@@ -14,9 +14,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({user, children}) 
   useEffect(() => {
     if (!user) {
       navigate("/", { replace: true });
-    } else {
-      console.log( user);
-    }
+    } 
       
   }, []);
 

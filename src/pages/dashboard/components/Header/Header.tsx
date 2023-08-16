@@ -1,14 +1,6 @@
-// import React from "react";
 import "../Header/Header.scss";
-// import { auth } from "../../../../config/firebase";
 import { useSelector } from "react-redux";
-// import { useState } from "react";
-import {
-  // setActiveUser,
-  // setUserLogOutState,
-  selectUserName,
-  selectUserEmail,
-} from "../../../../redux/userSlice";
+import { selectUserName, selectUserEmail } from "../../../../redux/userSlice";
 
 export const Header = () => {
   const userName = useSelector(selectUserName);

@@ -6,10 +6,20 @@ import { SwiperNoLoop } from "./components/Swipers/SwiperNoLoop/SwiperNoLoop";
 import { SwiperLoop } from "./components/Swipers/SwiperLoop/SwiperLoop";
 import { showsProps } from "./components/Swipers/Intetfaces";
 import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
-
-
+import { useEffect } from "react";
+import { db } from "../../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 export const DashboardPage = () => {
+  const showsCollectionRef = collection(db, "shows");
+  useEffect(() => {
+    const getDataBase = async () => {
+      const data = await getDocs(showsCollectionRef);
+      console.log(data.docs[0]._document.data.value.mapValue.fields.fullTime);
+    };
+    getDataBase()
+  });
+
   const showsArrayAppreciated: Array<showsProps> = [
     {
       id: 1,
@@ -215,8 +225,6 @@ export const DashboardPage = () => {
     },
   ];
 
-
-
   return (
     <div className="dashboard-page">
       <Header />
@@ -241,8 +249,8 @@ export const DashboardPage = () => {
         <SwiperNoLoop
           showsArray={showsArrayTopTenToday}
           showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
-          />
-          </div>
+        />
+      </div>
       <LogOutComponent />
     </div>
   );
