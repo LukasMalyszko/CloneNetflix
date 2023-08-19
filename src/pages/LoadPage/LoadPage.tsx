@@ -24,6 +24,10 @@ export const LoadPage = () => {
         setTimeout(() => navigate("/dashboard"), 1500);
       } else {
         setTimeout(() => navigate("/login"), 1500);
+        setActiveUser({
+          userName: "",
+          userEmail: "",
+        })
       }
     };
     fetchData();

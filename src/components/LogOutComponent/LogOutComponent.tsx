@@ -13,9 +13,10 @@ export const LogOutComponent = () => {
     .signOut()
     .then(() => {
       dispatch(setUserLogOutState());
+      
+      navigate("/login");
     })
     .catch((err) => alert(err.message));
-    navigate("/login");
   };
   return <button className="logout-button" onClick={handleSignOut}>Logout</button>;
 };

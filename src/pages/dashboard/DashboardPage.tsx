@@ -15,7 +15,7 @@ export const DashboardPage = () => {
   useEffect(() => {
     const getDataBase = async () => {
       const data = await getDocs(showsCollectionRef);
-      console.log(data.docs[0]._document.data.value.mapValue.fields.fullTime);
+      console.log(data.docs.map((doc) => ({...doc.data()})));
     };
     getDataBase()
   });

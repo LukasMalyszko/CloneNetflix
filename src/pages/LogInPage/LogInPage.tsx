@@ -88,7 +88,7 @@ export const LogInComponent = () => {
         })
       );
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
     }
@@ -104,7 +104,7 @@ export const LogInComponent = () => {
           userEmail: response.user.email as string,
         })
       );
-      navigate("/");
+      navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
     }
