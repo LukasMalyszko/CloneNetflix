@@ -3,51 +3,53 @@ import { useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import { selectUserEmail, setActiveUser } from "../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { LoadPage } from "../pages/LoadPage/LoadPage";
 
 interface PrivateProps {
-  page?: string;
+  isLogged: boolean;
 }
-export const PrivateRoutes: React.FC<PrivateProps> = ({ page }) => {
+
+export const PrivateRoutes: React.FC<PrivateProps> = ({ isLogged }) => {
   const dispatch = useDispatch();
   const userEmail = useSelector(selectUserEmail);
   const [isAuth, setIsAuth] = useState<boolean | undefined>();
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("userEmail", userEmail);
-      if (userEmail === null) {
-        await auth.authStateReady();
-
-        if (auth.currentUser) {
+        if (userEmail === null) {
+            await auth.authStateReady();
+            
+            if (auth.currentUser) {
           dispatch(
             setActiveUser({
-              userName: auth.currentUser.displayName as string,
+                userName: auth.currentUser.displayName as string,
               userEmail: auth.currentUser.email as string,
             })
-          );
-          setIsAuth(true);
+            );
+            setIsAuth(true);
+            isLogged = true;
         } else {
-          setActiveUser({
-            userName: "",
-            userEmail: "",
-          });
-          setIsAuth(false);
+            setActiveUser({
+                userName: "",
+                userEmail: "",
+            });
+            setIsAuth(false);
+            isLogged = false;
         }
-      } else if (userEmail === "") {
+    } else if (userEmail === "") {
         setIsAuth(false);
-      } else {
+        isLogged = false;
+    } else {
         setIsAuth(true);
-      }
-    };
-    fetchData();
-  });
-  if (isAuth === undefined) return null;
-  if (page === "dashboard") {
-    return isAuth ? <Outlet /> : <Navigate to="/login" />;
-  }
-
-  console.log("isAuth", isAuth);
-  return isAuth ? <Navigate to="/dashboard" /> : <Outlet />;
+        isLogged = true;
+    }
 };
+fetchData();
+});
+if (isAuth === undefined) return <LoadPage />;
+if (isLogged) {
+    return isAuth ? <Outlet /> : <Navigate to="/login" />;
+}
 
-export default PrivateRoutes;
+return isAuth ? <Navigate to="/dashboard" /> : <Outlet />;
+};

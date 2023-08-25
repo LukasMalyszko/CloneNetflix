@@ -4,13 +4,13 @@ import { FacebookAuthProvider } from "firebase/auth/cordova";
 import { getFirestore } from "@firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAOoP6uC9oa-WOoKI5IRNH2BQHjuJU-b40",
-  authDomain: "netflix-clone-5805d.firebaseapp.com",
-  projectId: "netflix-clone-5805d",
-  storageBucket: "netflix-clone-5805d.appspot.com",
-  messagingSenderId: "665296037637",
-  appId: "1:665296037637:web:607eea02e4573de374f96c",
-  measurementId: "G-Q0MG70RMH8"
+  apiKey: "AIzaSyBpCmTQ_H798ZJlROSuZU_BDbDTYtiE6rs",
+  authDomain: "nx-project-3a0f6.firebaseapp.com",
+  projectId: "nx-project-3a0f6",
+  storageBucket: "nx-project-3a0f6.appspot.com",
+  messagingSenderId: "58660069855",
+  appId: "1:58660069855:web:494ff6286ef4aa6d83e46a",
+  measurementId: "G-R0Y1EK7Y68"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -20,13 +20,6 @@ export const facebookProvider = new FacebookAuthProvider();
 
 export const db = getFirestore(app);
 
-// export const showLoginError = (error: any) => {
-//   let loginErrorMessage = "";
-//   if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
-//     loginErrorMessage = "Wrong password. Try again."
-//   } else {
-//     loginErrorMessage = `Error: ${error.message}`
-//   }
-// }
+
 
 

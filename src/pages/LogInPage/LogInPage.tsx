@@ -5,7 +5,6 @@ import { LogInputContainer } from "../registrationPage/components/LogInputContai
 import { LogoNetflix } from "../registrationPage/components/LogoNetflix";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../config/firebase";
 import { useDispatch } from "react-redux";
@@ -70,7 +69,6 @@ export const LogInComponent = () => {
   };
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const loginEmailPassword = async () => {
     const loginEmail = form.email.value;
@@ -88,7 +86,6 @@ export const LogInComponent = () => {
         })
       );
 
-      navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
     }
@@ -104,7 +101,6 @@ export const LogInComponent = () => {
           userEmail: response.user.email as string,
         })
       );
-      navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
     }
@@ -188,7 +184,7 @@ export const LogInComponent = () => {
         <div className="log-component__footer-text">
           You dont have an account yet?
         </div>
-        <Link to="/registration-page" className="log-component__button-link">
+        <Link to="/registration" className="log-component__button-link">
           <button className="log-component__secondary-button">
             Sign up for Netflix
           </button>

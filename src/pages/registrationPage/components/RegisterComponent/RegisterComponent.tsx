@@ -132,7 +132,7 @@ export const RegisterComponent = () => {
           userEmail: response.user.email as string,
         })
       );
-      navigate("/dashboard");
+      // navigate("/dashboard");
     } catch (error: any) {
       alert(error.message);
     }

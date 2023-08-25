@@ -1,14 +1,12 @@
 import "./LoadPage.scss";
 import { useEffect } from "react";
 import { auth } from "../../config/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setActiveUser } from "../../redux/userSlice";
 
 export const LoadPage = () => {
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,9 +19,7 @@ export const LoadPage = () => {
             userEmail: auth.currentUser.email as string,
           })
         );
-        setTimeout(() => navigate("/dashboard"), 1500);
       } else {
-        setTimeout(() => navigate("/login"), 1500);
         setActiveUser({
           userName: "",
           userEmail: "",

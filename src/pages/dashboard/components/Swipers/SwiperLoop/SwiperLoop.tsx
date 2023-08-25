@@ -1,19 +1,21 @@
 import "./SwiperLoop.scss";
 import "../hover-dropdown.scss";
 import "../tooltip.scss";
+import "swiper/scss";
 import "react-tooltip/dist/react-tooltip.css";
 import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/scss";
 import { ReactionButtons } from "../ReactionButtons";
 
 export const SwiperLoop: any = ({
   showsArray,
   showsHeaderTitle,
+  showClickOrWatchedCounter,
 }: {
   showsArray: Array<object>;
   showsHeaderTitle: string;
+  showClickOrWatchedCounter: number;
 }) => {
   const [swiper, setSwiper] = useState<any>(null);
   const [hideButton, setHideButton] = useState(true);
@@ -36,6 +38,12 @@ export const SwiperLoop: any = ({
   const handleMouseOut = () => {
     setIsHovering(false);
   };
+
+  const [watchedCounter, setWatchedCounter] = useState(0);
+
+  const sendWatchedCounterToFirestore = () => {
+    
+  }
 
   return (
     <div className="swiper-component">
@@ -82,6 +90,7 @@ export const SwiperLoop: any = ({
             <SwiperSlide
               key={show.id}
               className="swiper-component__slide-container"
+              onClick={() => setWatchedCounter}
             >
               <img className="image" src={show.src} alt={show.title} />
               <div className="hover-dropdown">
@@ -89,7 +98,11 @@ export const SwiperLoop: any = ({
                   <div className="hover-dropdown__buttons-container">
                     <div className="hover-dropdown__main-buttons">
                       <div className="hover-dropdown__icon-container play">
-                        <img src="/play.svg" alt="play" />
+                        <img
+                          src="/play.svg"
+                          alt="play"
+                          onClick={() => setWatchedCounter}
+                        />
                       </div>
 
                       <div className="hover-dropdown__static-buttons">
