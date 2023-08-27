@@ -7,15 +7,15 @@ import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ReactionButtons } from "../ReactionButtons";
+import { updateDoc, doc, setDoc, getDoc } from "firebase/firestore";
+import { db } from "../../../../../config/firebase";
 
 export const SwiperLoop: any = ({
   showsArray,
   showsHeaderTitle,
-  showClickOrWatchedCounter,
 }: {
   showsArray: Array<object>;
   showsHeaderTitle: string;
-  showClickOrWatchedCounter: number;
 }) => {
   const [swiper, setSwiper] = useState<any>(null);
   const [hideButton, setHideButton] = useState(true);
@@ -39,11 +39,28 @@ export const SwiperLoop: any = ({
     setIsHovering(false);
   };
 
-  const [watchedCounter, setWatchedCounter] = useState(0);
+  const [watchedCounter, setWatchedCounter] = useState(1);
 
-  const sendWatchedCounterToFirestore = () => {
-    
-  }
+  const sendWatchedCounterToFirestore = async (documentId: string) => {
+    try {
+      const showDocumentRef = doc(db, `showsAppreciated/${documentId}`);
+
+      const showDocumentSnapshot = await getDoc(showDocumentRef);
+      if (showDocumentSnapshot.exists()) {
+        await updateDoc(showDocumentRef, {
+          watchedCounter: watchedCounter,
+        });
+        console.log("Zmienne zaktualizowane w Firestore");
+      } else {
+        await setDoc(showDocumentRef, {
+          watchedCounter: watchedCounter,
+        });
+        console.log("dane wysłane");
+      }
+    } catch (error) {
+      console.log("błąd wysyłania", error);
+    }
+  };
 
   return (
     <div className="swiper-component">
@@ -86,11 +103,15 @@ export const SwiperLoop: any = ({
       >
         {showsArray.map((show: any, index: number) => {
           tooltipId;
+          const showDocumentId = show.id;
           return (
             <SwiperSlide
               key={show.id}
               className="swiper-component__slide-container"
-              onClick={() => setWatchedCounter}
+              onClick={() => {
+                setWatchedCounter(show.watchedCounter + 1);
+                sendWatchedCounterToFirestore(showDocumentId);
+              }}
             >
               <img className="image" src={show.src} alt={show.title} />
               <div className="hover-dropdown">
@@ -101,7 +122,10 @@ export const SwiperLoop: any = ({
                         <img
                           src="/play.svg"
                           alt="play"
-                          onClick={() => setWatchedCounter}
+                          onClick={() => {
+                            setWatchedCounter(show.watchedCounter + 1);
+                            sendWatchedCounterToFirestore(showDocumentId);
+                          }}
                         />
                       </div>
 

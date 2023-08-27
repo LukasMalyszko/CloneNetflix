@@ -10,8 +10,6 @@ import { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import {
   collection,
-  // doc,
-  // getDocs,
   onSnapshot,
   QuerySnapshot,
 } from "firebase/firestore";
