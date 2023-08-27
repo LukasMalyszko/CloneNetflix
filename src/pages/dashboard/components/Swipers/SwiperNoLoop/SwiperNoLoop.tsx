@@ -2,13 +2,13 @@ import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
-import { showsProps } from "../Intetfaces";
+import { ShowProps } from "../Intetfaces";
 
 export const SwiperNoLoop: any = ({
   showsArray,
   showsHeaderTitle,
 }: {
-  showsArray: Array<showsProps>;
+  showsArray: Array<ShowProps>;
   showsHeaderTitle: string;
 }) => {
   const [swiper, setSwiper] = useState<any>(null);
@@ -58,7 +58,7 @@ export const SwiperNoLoop: any = ({
         }}
         onSwiper={setSwiper}
       >
-        {showsArray.map((show) => {
+        {showsArray.map((show, index) => {
           return (
             <SwiperSlide
               key={show.id}
@@ -66,19 +66,19 @@ export const SwiperNoLoop: any = ({
             >
               <div
                 className={`swiper-component__review-container ${
-                  show.id === 1
+                  index === 0
                     ? "gold"
-                    : show.id === 2
+                    : index === 1
                     ? "silver"
-                    : show.id === 3
+                    : index === 2
                     ? "bronze"
                     : ""
                 }`}
               >
-                {show.id}
+                {index + 1}
               </div>
               <div className="swiper-component__img-container">
-                <img src={show.src} alt={show.title} />
+                <img src={show.src.toString()} alt={show.title.toString()} />
               </div>
             </SwiperSlide>
           );

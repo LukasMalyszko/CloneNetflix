@@ -39,7 +39,7 @@ export const SwiperLoop: any = ({
     setIsHovering(false);
   };
 
-  const [watchedCounter, setWatchedCounter] = useState(1);
+  const [watchedCounter, setWatchedCounter] = useState(0);
 
   const sendWatchedCounterToFirestore = async (documentId: string) => {
     try {
@@ -61,6 +61,7 @@ export const SwiperLoop: any = ({
       console.log("błąd wysyłania", error);
     }
   };
+
 
   return (
     <div className="swiper-component">

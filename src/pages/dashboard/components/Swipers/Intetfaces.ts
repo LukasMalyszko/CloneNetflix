@@ -1,3 +1,9 @@
 export interface ShowProps {
-  [key: string]: number | string;
+  currentEpisode: string;
+  currentTime: number;
+  fullTime: number;
+  src: string;
+  title: string;
+  watchedCounter: number;
+  id: string;
 }
