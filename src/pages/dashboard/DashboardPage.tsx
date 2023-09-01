@@ -7,46 +7,56 @@ import { SwiperLoop } from "./components/Swipers/SwiperLoop/SwiperLoop";
 import { ShowProps } from "./components/Swipers/Intetfaces";
 import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
 import { useEffect, useState } from "react";
-import { db } from "../../config/firebase";
+import { auth, db } from "../../config/firebase";
 import { collection, onSnapshot, QuerySnapshot } from "firebase/firestore";
 
 export const DashboardPage = () => {
-  const showsCollectionRef: any = collection(db, "showsAppreciated");
+  const userID = auth.currentUser?.uid;
+  const showsWatchAgainCollectionRef: any = collection(
+    db,
+    `showsWatchAgain/${userID}/userShows`
+  );
 
   const [showsArrayAppreciated, setShowsArrayAppreciated] = useState<
     ShowProps[]
   >([]);
+  const [showsArrayPopular, setShowsArrayPopular] = useState<ShowProps[]>([]);
+  const [showsArrayWatchAgain, setShowsArrayWatchAgain] = useState<ShowProps[]>(
+    []
+  );
 
-  const getShows = async () => {
-    onSnapshot(
-      showsCollectionRef,
-      (querySnapshot: QuerySnapshot<ShowProps>) => {
-        const newData: ShowProps[] = [];
-        querySnapshot.forEach((doc) => {
-          const showData = doc.data();
-          newData.push({
-            ...showData,
-            id: doc.id,
-          });
-        });
-        setShowsArrayAppreciated(newData);
-      }
-    );
+  const fetchData = (
+    collectionRef: any,
+    setData: React.Dispatch<React.SetStateAction<ShowProps[]>>
+  ) => {
+    onSnapshot(collectionRef, (querySnapshot: QuerySnapshot<ShowProps>) => {
+      const newData: ShowProps[] = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setData(newData);
+    });
   };
 
   useEffect(() => {
-    getShows();
+    const showsCollectionRef = collection(db, "showsAppreciated");
+    const showsPopularCollectionRef = collection(db, "showsPopular");
+
+    fetchData(showsCollectionRef, setShowsArrayAppreciated);
+    fetchData(showsPopularCollectionRef, setShowsArrayPopular);
+    fetchData(showsWatchAgainCollectionRef, setShowsArrayWatchAgain);
   }, []);
 
-  const showsArrayPopularNow = [...showsArrayAppreciated]
-    .sort((a, b) => b.watchedCounter - a.watchedCounter);
+  const showsArrayPopularNow = showsArrayPopular.sort(
+    (a, b) => b.watchedCounter - a.watchedCounter
+  );
 
-const showsWatchedArray = showsArrayAppreciated.filter((show) => show.watchedCounter > 0);
-  console.log("dashboard showsArray", showsWatchedArray);
+  const showsTopTenWatched = showsArrayAppreciated
+    .slice()
+    .sort((a, b) => b.watchedCounter - a.watchedCounter)
+    .slice(0, 10);
 
-  const showsTopTenWatched = showsArrayAppreciated.slice() // Stworzenie kopii tablicy
-  .sort((a, b) => b.watchedCounter - a.watchedCounter) // Sortowanie malejąco
-  .slice(0, 10);
+  const showsTopWorld = showsTopTenWatched.slice().reverse();
 
   return (
     <div className="dashboard-page">
@@ -62,7 +72,7 @@ const showsWatchedArray = showsArrayAppreciated.filter((show) => show.watchedCou
           showsHeaderTitle={"Popularne teraz"}
         />
         <SwiperLoop
-          showsArray={showsWatchedArray}
+          showsArray={showsArrayWatchAgain}
           showsHeaderTitle={"Obejrzyj ponownie"}
         />
         <SwiperNoLoop
@@ -70,7 +80,7 @@ const showsWatchedArray = showsArrayAppreciated.filter((show) => show.watchedCou
           showsHeaderTitle={"Top 10 seriali w Polsce dzisiaj"}
         />
         <SwiperNoLoop
-          showsArray={showsTopTenWatched}
+          showsArray={showsTopWorld}
           showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
         />
       </div>

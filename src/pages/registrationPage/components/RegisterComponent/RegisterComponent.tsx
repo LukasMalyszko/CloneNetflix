@@ -130,9 +130,10 @@ export const RegisterComponent = () => {
         setActiveUser({
           userName: response.user.displayName as string,
           userEmail: response.user.email as string,
+          userID: response.user.uid,
         })
       );
-      // navigate("/dashboard");
+      navigate("/");
     } catch (error: any) {
       alert(error.message);
     }
@@ -149,6 +150,8 @@ export const RegisterComponent = () => {
         setActiveUser({
           userName: response.user.displayName as string,
           userEmail: response.user.email as string,
+          userID: response.user.uid,
+
         })
       );
       navigate("/");

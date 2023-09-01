@@ -4,7 +4,7 @@ import { LogInButton } from "../registrationPage/components/LogInButton";
 import { LogInputContainer } from "../registrationPage/components/LogInputContainer/LogInputContainer";
 import { LogoNetflix } from "../registrationPage/components/LogoNetflix";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../config/firebase";
 import { useDispatch } from "react-redux";
@@ -67,7 +67,7 @@ export const LogInComponent = () => {
   const handleChangeInput = (value: string, name: string) => {
     handleChange(value, name);
   };
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const loginEmailPassword = async () => {
@@ -85,6 +85,7 @@ export const LogInComponent = () => {
           userEmail: response.user.email as string,
         })
       );
+      navigate("/dashboard");
 
     } catch (error: any) {
       alert(error.message);
@@ -101,6 +102,8 @@ export const LogInComponent = () => {
           userEmail: response.user.email as string,
         })
       );
+      navigate("/dashboard");
+
     } catch (error: any) {
       alert(error.message);
     }

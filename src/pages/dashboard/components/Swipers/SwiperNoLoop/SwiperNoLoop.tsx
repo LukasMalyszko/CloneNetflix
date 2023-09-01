@@ -1,7 +1,7 @@
+import "swiper/scss";
 import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/scss";
 import { ShowProps } from "../Intetfaces";
 
 export const SwiperNoLoop: any = ({
@@ -51,9 +51,11 @@ export const SwiperNoLoop: any = ({
             if (currentIndex === 0) {
               setHideButtonPrev(true);
             }
+            
           }
         }}
         onReachEnd={() => {
+          // console.log("reachend")
           setHideButtonNext(true);
         }}
         onSwiper={setSwiper}
@@ -61,7 +63,7 @@ export const SwiperNoLoop: any = ({
         {showsArray.map((show, index) => {
           return (
             <SwiperSlide
-              key={show.id}
+              key={index}
               className="swiper-component__review-slide-container"
             >
               <div
@@ -78,7 +80,7 @@ export const SwiperNoLoop: any = ({
                 {index + 1}
               </div>
               <div className="swiper-component__img-container">
-                <img src={show.src.toString()} alt={show.title.toString()} />
+                <img src={show.src} alt={show.title} />
               </div>
             </SwiperSlide>
           );

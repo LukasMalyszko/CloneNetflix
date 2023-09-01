@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ReactionButtons } from "../ReactionButtons";
 import { updateDoc, doc, setDoc, getDoc } from "firebase/firestore";
-import { db } from "../../../../../config/firebase";
+import { db, auth } from "../../../../../config/firebase";
 
 export const SwiperLoop: any = ({
   showsArray,
@@ -39,29 +39,49 @@ export const SwiperLoop: any = ({
     setIsHovering(false);
   };
 
-  const [watchedCounter, setWatchedCounter] = useState(0);
-
-  const sendWatchedCounterToFirestore = async (documentId: string) => {
+  const sendWatchedCounterToPopularCollection = async (show: any) => {
     try {
-      const showDocumentRef = doc(db, `showsAppreciated/${documentId}`);
+      const userId = auth.currentUser?.uid;
+      const showDocumentPopularRef = doc(db, `showsPopular/${show.id}`);
 
-      const showDocumentSnapshot = await getDoc(showDocumentRef);
+      const showDocumentSnapshot = await getDoc(showDocumentPopularRef);
       if (showDocumentSnapshot.exists()) {
-        await updateDoc(showDocumentRef, {
-          watchedCounter: watchedCounter,
+        await updateDoc(showDocumentPopularRef, {
+          watchedCounter: showDocumentSnapshot.data().watchedCounter + 1,
         });
-        console.log("Zmienne zaktualizowane w Firestore");
+        console.log("show zaktualizowany w Firestore");
       } else {
-        await setDoc(showDocumentRef, {
-          watchedCounter: watchedCounter,
+        await setDoc(showDocumentPopularRef, {
+          ...show,
+          watchedCounter: 1,
         });
-        console.log("dane wysłane");
+        console.log("counter dodany");
       }
+      sendShowToWatchAgainCollection(userId, show);
     } catch (error) {
       console.log("błąd wysyłania", error);
     }
   };
 
+  const sendShowToWatchAgainCollection = async (userID: any, show: any) => {
+   
+    try {
+      const showDocumentWatchAgainRef = doc(
+        db,
+        `showsWatchAgain/${userID}/userShows/${show.id}`
+      ); 
+      const showDocumentSnapshot = await getDoc(showDocumentWatchAgainRef);
+      if (!showDocumentSnapshot.exists()) {
+        await setDoc(showDocumentWatchAgainRef, {
+          ...show,
+        });
+      }
+
+      console.log(userID);
+    } catch (error) {
+      console.log("błąd wysyłania do watch again", error);
+    }
+  };
 
   return (
     <div className="swiper-component">
@@ -104,14 +124,12 @@ export const SwiperLoop: any = ({
       >
         {showsArray.map((show: any, index: number) => {
           tooltipId;
-          const showDocumentId = show.id;
           return (
             <SwiperSlide
-              key={show.id}
+              key={index}
               className="swiper-component__slide-container"
               onClick={() => {
-                setWatchedCounter(show.watchedCounter + 1);
-                sendWatchedCounterToFirestore(showDocumentId);
+                sendWatchedCounterToPopularCollection(show);
               }}
             >
               <img className="image" src={show.src} alt={show.title} />
@@ -124,8 +142,7 @@ export const SwiperLoop: any = ({
                           src="/play.svg"
                           alt="play"
                           onClick={() => {
-                            setWatchedCounter(show.watchedCounter + 1);
-                            sendWatchedCounterToFirestore(showDocumentId);
+                            sendWatchedCounterToPopularCollection(show);
                           }}
                         />
                       </div>

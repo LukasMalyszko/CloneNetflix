@@ -7,22 +7,24 @@ import { setActiveUser } from "../../redux/userSlice";
 export const LoadPage = () => {
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     const fetchData = async () => {
       await auth.authStateReady();
+      // console.log(auth.currentUser?.uid)
 
       if (auth.currentUser) {
         dispatch(
           setActiveUser({
             userName: auth.currentUser.displayName as string,
             userEmail: auth.currentUser.email as string,
+            userID: auth.currentUser.uid as string,
           })
         );
       } else {
         setActiveUser({
           userName: "",
           userEmail: "",
+          userID: "",
         })
       }
     };
