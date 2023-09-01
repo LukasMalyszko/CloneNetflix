@@ -83,6 +83,7 @@ export const LogInComponent = () => {
         setActiveUser({
           userName: response.user.displayName as string,
           userEmail: response.user.email as string,
+          userID: response.user.uid,
         })
       );
       navigate("/dashboard");
@@ -100,6 +101,8 @@ export const LogInComponent = () => {
         setActiveUser({
           userName: response.user.displayName as string,
           userEmail: response.user.email as string,
+          userID: response.user.uid,
+
         })
       );
       navigate("/dashboard");

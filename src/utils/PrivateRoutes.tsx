@@ -16,40 +16,42 @@ export const PrivateRoutes: React.FC<PrivateProps> = ({ isLogged }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-        if (userEmail === null) {
-            await auth.authStateReady();
-            
-            if (auth.currentUser) {
+      if (userEmail === null) {
+        await auth.authStateReady();
+
+        if (auth.currentUser) {
           dispatch(
             setActiveUser({
-                userName: auth.currentUser.displayName as string,
+              userName: auth.currentUser.displayName as string,
               userEmail: auth.currentUser.email as string,
+              userID: auth.currentUser.uid,
             })
-            );
-            setIsAuth(true);
-            isLogged = true;
+          );
+          setIsAuth(true);
+          isLogged = true;
         } else {
-            setActiveUser({
-                userName: "",
-                userEmail: "",
-            });
-            setIsAuth(false);
-            isLogged = false;
+          setActiveUser({
+            userName: "",
+            userEmail: "",
+            userID: "",
+          });
+          setIsAuth(false);
+          isLogged = false;
         }
-    } else if (userEmail === "") {
+      } else if (userEmail === "") {
         setIsAuth(false);
         isLogged = false;
-    } else {
+      } else {
         setIsAuth(true);
         isLogged = true;
-    }
-};
-fetchData();
-});
-if (isAuth === undefined) return <LoadPage />;
-if (isLogged) {
+      }
+    };
+    fetchData();
+  });
+  if (isAuth === undefined) return <LoadPage />;
+  if (isLogged) {
     return isAuth ? <Outlet /> : <Navigate to="/login" />;
-}
+  }
 
-return isAuth ? <Navigate to="/dashboard" /> : <Outlet />;
+  return isAuth ? <Navigate to="/dashboard" /> : <Outlet />;
 };
