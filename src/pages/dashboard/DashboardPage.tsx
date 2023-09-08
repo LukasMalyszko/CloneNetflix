@@ -1,6 +1,7 @@
 import "./components/Swipers/SwiperNoLoop/SwiperNoLoop.scss";
 import "./components/Swipers/SwiperLoop/SwiperLoop.scss";
 import "./DashboardPage.scss";
+import "../dashboard/components/Swipers/skeleton.scss";
 import { Header } from "./components/Header/Header";
 import { SwiperNoLoop } from "./components/Swipers/SwiperNoLoop/SwiperNoLoop";
 import { SwiperLoop } from "./components/Swipers/SwiperLoop/SwiperLoop";

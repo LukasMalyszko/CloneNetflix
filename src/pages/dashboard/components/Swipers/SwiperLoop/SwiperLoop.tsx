@@ -64,12 +64,11 @@ export const SwiperLoop: any = ({
   };
 
   const sendShowToWatchAgainCollection = async (userID: any, show: any) => {
-   
     try {
       const showDocumentWatchAgainRef = doc(
         db,
         `showsWatchAgain/${userID}/userShows/${show.id}`
-      ); 
+      );
       const showDocumentSnapshot = await getDoc(showDocumentWatchAgainRef);
       if (!showDocumentSnapshot.exists()) {
         await setDoc(showDocumentWatchAgainRef, {
@@ -77,7 +76,6 @@ export const SwiperLoop: any = ({
         });
       }
 
-      console.log(userID);
     } catch (error) {
       console.log("błąd wysyłania do watch again", error);
     }
@@ -127,12 +125,12 @@ export const SwiperLoop: any = ({
           return (
             <SwiperSlide
               key={index}
-              className="swiper-component__slide-container"
+              className="swiper-component__slide-container skeleton"
               onClick={() => {
                 sendWatchedCounterToPopularCollection(show);
               }}
             >
-              <img className="image" src={show.src} alt={show.title} />
+              <img className="image " src={show.src ?? "netflix-image.png"} alt={show.title} />
               <div className="hover-dropdown">
                 <div className="hover-dropdown__content">
                   <div className="hover-dropdown__buttons-container">
@@ -141,6 +139,7 @@ export const SwiperLoop: any = ({
                         <img
                           src="/play.svg"
                           alt="play"
+                          loading="lazy"
                           onClick={() => {
                             sendWatchedCounterToPopularCollection(show);
                           }}

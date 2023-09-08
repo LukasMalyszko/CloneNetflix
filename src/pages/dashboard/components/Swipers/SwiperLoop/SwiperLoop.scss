@@ -65,9 +65,8 @@
   }
 
   & &__slide-container {
-    max-width: 256px;
-    max-height: 164px;
-    width: 100%;
+    width: 256px;
+    height: 164px;
     border-radius: 16px;
     flex-shrink: 0;
     overflow: hidden;
@@ -162,9 +161,9 @@
     }
 
     & &__slide-container {
-      max-width: 218px;
+      width: 218px;
       border-radius: 14px;
-      max-height: 140px;
+      height: 140px;
     }
 
     .button {

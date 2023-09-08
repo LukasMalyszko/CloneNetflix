@@ -9,8 +9,8 @@ export const Header = () => {
   return (
     <div className="dashboard-header-component">
       <div className="dashboard-header-component__top-gradient"></div>
-      <div className="dashboard-header-component__main-img-container">
-        <img src="/wednesday.png" alt="Wednesday" />
+      <div className="dashboard-header-component__main-img-container skeleton">
+        <img src="/wednesday.png" alt="Wednesday" loading="lazy" />
       </div>
       <div className="dashboard-header-component__header-content">
         <div className="dashboard-header-component__top">

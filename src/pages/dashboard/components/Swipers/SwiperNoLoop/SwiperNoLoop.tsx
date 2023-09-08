@@ -51,12 +51,14 @@ export const SwiperNoLoop: any = ({
             if (currentIndex === 0) {
               setHideButtonPrev(true);
             }
-            
           }
         }}
-        onReachEnd={() => {
-          // console.log("reachend")
-          setHideButtonNext(true);
+        onReachEnd={(e) => {
+          if (e.activeIndex > 6) {
+            setHideButtonNext(true);
+          } else {
+            setHideButtonNext(false);
+          }
         }}
         onSwiper={setSwiper}
       >
@@ -79,8 +81,8 @@ export const SwiperNoLoop: any = ({
               >
                 {index + 1}
               </div>
-              <div className="swiper-component__img-container">
-                <img src={show.src} alt={show.title} />
+              <div className="swiper-component__img-container skeleton">
+                <img src={show.src} alt={show.title} loading="lazy" />
               </div>
             </SwiperSlide>
           );
