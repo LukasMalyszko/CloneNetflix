@@ -48,7 +48,8 @@ body {
   & &__profile-container {
     display: flex;
     gap: 10px;
-    align-items: center
+    align-items: center;
+    z-index: 3;
   };
   
   & &__img-container {

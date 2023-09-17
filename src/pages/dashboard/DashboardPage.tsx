@@ -6,7 +6,6 @@ import { Header } from "./components/Header/Header";
 import { SwiperNoLoop } from "./components/Swipers/SwiperNoLoop/SwiperNoLoop";
 import { SwiperLoop } from "./components/Swipers/SwiperLoop/SwiperLoop";
 import { ShowProps } from "./components/Swipers/Intetfaces";
-import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
 import { useEffect, useState } from "react";
 import { auth, db } from "../../config/firebase";
 import { collection, onSnapshot, QuerySnapshot } from "firebase/firestore";
@@ -85,7 +84,6 @@ export const DashboardPage = () => {
           showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
         />
       </div>
-      <LogOutComponent />
     </div>
   );
 };
