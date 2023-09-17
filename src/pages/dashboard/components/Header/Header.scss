@@ -38,6 +38,32 @@ body {
     margin-bottom: 130px;
   }
 
+  & &__display-profile {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  & &__profile-container {
+    display: flex;
+    gap: 10px;
+    align-items: center
+  };
+  
+  & &__img-container {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .2s;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   & &__rating-container {
     display: flex;
     align-items: center;

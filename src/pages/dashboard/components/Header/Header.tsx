@@ -1,10 +1,19 @@
 import "../Header/Header.scss";
 import { useSelector } from "react-redux";
 import { selectUserName, selectUserEmail } from "../../../../redux/userSlice";
+// import { Link } from "react-router-dom";
+import { ShowList } from "../ShowList/ShowList";
+import { useState } from "react";
 
 export const Header = () => {
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
+
+  const [isListVisible, setIsListVisible] = useState(false);
+
+  const toggleListVisibility = () => {
+    setIsListVisible(!isListVisible);
+  };
 
   return (
     <div className="dashboard-header-component">
@@ -17,9 +26,20 @@ export const Header = () => {
           <div className="dashboard-header-component__img-logo-container">
             <img src="/NETFLIX.svg" alt="netflix logo" />
           </div>
-          <div className="dashboard-header-component__display-name">
-            {`Witaj
-            ${!userName ? userEmail : userName}`}
+          <div className="dashboard-header-component__display-profile">
+            <div className="dashboard-header-component__profile-container">
+              <div className="dashboard-header-component__display-name">
+                {`Witaj
+                ${!userName ? userEmail : userName}`}
+              </div>
+              <div className="dashboard-header-component__img-container" onClick={toggleListVisibility}>
+                <img
+                  src="https://cdn.pixabay.com/photo/2023/09/10/00/49/lovebird-8244066_1280.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            {<ShowList isListVisible={isListVisible} />}
           </div>
         </div>
         <div className="dashboard-header-component__rating-container">
