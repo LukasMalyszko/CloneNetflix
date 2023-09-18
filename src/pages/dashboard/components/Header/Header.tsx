@@ -1,19 +1,75 @@
 import "../Header/Header.scss";
 import { useSelector } from "react-redux";
-import { selectUserName, selectUserEmail } from "../../../../redux/userSlice";
-// import { Link } from "react-router-dom";
+import {  selectUserEmail } from "../../../../redux/userSlice";
 import { ShowList } from "../ShowList/ShowList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { auth, db } from "../../../../config/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export const Header = () => {
-  const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
 
   const [isListVisible, setIsListVisible] = useState(false);
+  const [userName, setUserName] = useState("")
+  const [userImage, setUserImage] = useState("");
 
   const toggleListVisibility = () => {
     setIsListVisible(!isListVisible);
   };
+  
+  const getUserName = async (userID?: string) => {
+    try {
+      const userDataRef = doc(db, `usersData/${userID}/userData/userName/`);
+      const userDataSnapshot = await getDoc(userDataRef);
+  
+      if (userDataSnapshot.exists()) {
+        const userName = userDataSnapshot.data().userName;
+        return userName;
+      } else {
+        console.error("Dokument nie istnieje.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Błąd podczas pobierania userName:", error);
+      return null;
+    }
+  };
+  
+  const getUserAvatar = async (userID?: string) => {
+    try {
+      const userImageRef = doc(db, `usersData/${userID}/userData/userImage/`);
+      const userImageSnapshot = await getDoc(userImageRef);
+      
+      if(userImageSnapshot.exists()) {
+        const userImage = userImageSnapshot.data().userImage;
+        return userImage;
+      } else {
+        console.error("Dokument nie istnieje");
+        return null;
+      }
+      
+    } catch (error) {
+      console.error("Bład pobierania userImage: ", error);
+      return null;
+    }
+  };
+
+  const userID = auth.currentUser?.uid;
+  useEffect(() => {
+    const fetchData = async () => {
+      const userNameFromFirebase = await getUserName(userID);
+      const userImageFromFirebase = await getUserAvatar(userID);
+      if (userNameFromFirebase) {
+        setUserName(userNameFromFirebase);
+      }
+      if(userImageFromFirebase) {
+        setUserImage(userImageFromFirebase);
+      }
+    }
+    fetchData()
+  }, [])
+
+
 
   return (
     <div className="dashboard-header-component">
@@ -32,9 +88,12 @@ export const Header = () => {
                 {`Witaj
                 ${!userName ? userEmail : userName}`}
               </div>
-              <div className="dashboard-header-component__img-container" onClick={toggleListVisibility}>
+              <div
+                className="dashboard-header-component__img-container"
+                onClick={toggleListVisibility}
+              >
                 <img
-                  src="https://cdn.pixabay.com/photo/2023/09/10/00/49/lovebird-8244066_1280.jpg"
+                  src={userImage}
                   alt=""
                 />
               </div>

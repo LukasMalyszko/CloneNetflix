@@ -6,6 +6,7 @@ import { LogInComponent } from "./pages/LogInPage/LogInPage";
 import { NotFound } from "./pages/NotFound/NotFound";
 import { PrivateRoutes } from "./utils/PrivateRoutes";
 import { FakeShow } from "./pages/FakeShow/FakeShow";
+import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route element={<PrivateRoutes isLogged />}>
           <Route element={<FakeShow />} path="/fake" />
           <Route element={<DashboardPage />} path="/dashboard" />
+          <Route element={<ProfilePage />} path="/profile" />
         </Route>
 
         <Route path="*" element={<NotFound />} />

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { LogOutComponent } from "../../../../components/LogOutComponent/LogOutComponent";
 import "./ShowList.scss";
 
@@ -8,7 +9,7 @@ interface ShowListProps {
 export const ShowList: React.FC<ShowListProps> = ({ isListVisible }) => {
   return (
     <ul className={`show-list ${isListVisible ? "visible" : "hidden"}`}>
-      <li className="show-list__item">
+      <Link to="/profile"><li className="show-list__item">
         <div className="img-container">
           <svg
             fill="#FFF"
@@ -31,7 +32,7 @@ export const ShowList: React.FC<ShowListProps> = ({ isListVisible }) => {
           </svg>
         </div>
         Profile
-      </li>
+      </li></Link>
       <LogOutComponent />
     </ul>
   );

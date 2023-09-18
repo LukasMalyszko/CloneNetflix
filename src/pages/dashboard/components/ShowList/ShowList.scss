@@ -11,9 +11,15 @@
   margin: 0;
   transition: 0.2s;
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   & &__item {
     display: flex;
     gap: 10px;
+    align-items: center;
     border-radius: 15px;
     cursor: pointer;
     padding: 15px;
