@@ -1,75 +1,70 @@
 import "../Header/Header.scss";
-import { useSelector } from "react-redux";
-import {  selectUserEmail } from "../../../../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectUserEmail,
+  selectUserImage,
+  selectUserName,
+  setActiveUser,
+} from "../../../../redux/userSlice";
 import { ShowList } from "../ShowList/ShowList";
 import { useEffect, useState } from "react";
 import { auth, db } from "../../../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
 export const Header = () => {
+  const userID = auth.currentUser?.uid;
+  const userName = useSelector(selectUserName);
+  const userImage = useSelector(selectUserImage);
   const userEmail = useSelector(selectUserEmail);
 
   const [isListVisible, setIsListVisible] = useState(false);
-  const [userName, setUserName] = useState("")
-  const [userImage, setUserImage] = useState("");
+
+  const dispatch = useDispatch();
 
   const toggleListVisibility = () => {
     setIsListVisible(!isListVisible);
   };
-  
+
   const getUserName = async (userID?: string) => {
     try {
       const userDataRef = doc(db, `usersData/${userID}/userData/userName/`);
       const userDataSnapshot = await getDoc(userDataRef);
-  
+
       if (userDataSnapshot.exists()) {
         const userName = userDataSnapshot.data().userName;
-        return userName;
+        dispatch(setActiveUser({ userName }));
       } else {
         console.error("Dokument nie istnieje.");
-        return null;
       }
     } catch (error) {
       console.error("Błąd podczas pobierania userName:", error);
-      return null;
     }
   };
-  
+
   const getUserAvatar = async (userID?: string) => {
     try {
       const userImageRef = doc(db, `usersData/${userID}/userData/userImage/`);
       const userImageSnapshot = await getDoc(userImageRef);
-      
-      if(userImageSnapshot.exists()) {
+
+      if (userImageSnapshot.exists()) {
         const userImage = userImageSnapshot.data().userImage;
-        return userImage;
+        
+        dispatch(setActiveUser({ userImage }));
       } else {
         console.error("Dokument nie istnieje");
-        return null;
       }
-      
     } catch (error) {
       console.error("Bład pobierania userImage: ", error);
-      return null;
     }
   };
 
-  const userID = auth.currentUser?.uid;
   useEffect(() => {
     const fetchData = async () => {
-      const userNameFromFirebase = await getUserName(userID);
-      const userImageFromFirebase = await getUserAvatar(userID);
-      if (userNameFromFirebase) {
-        setUserName(userNameFromFirebase);
-      }
-      if(userImageFromFirebase) {
-        setUserImage(userImageFromFirebase);
-      }
-    }
-    fetchData()
-  }, [])
-
-
+      await getUserName(userID);
+      await getUserAvatar(userID);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="dashboard-header-component">
@@ -79,7 +74,7 @@ export const Header = () => {
       </div>
       <div className="dashboard-header-component__header-content">
         <div className="dashboard-header-component__top">
-          <div className="dashboard-header-component__img-logo-container">
+          <div className="dashboard-header-component__img-logo-container ">
             <img src="/NETFLIX.svg" alt="netflix logo" />
           </div>
           <div className="dashboard-header-component__display-profile">
@@ -89,13 +84,12 @@ export const Header = () => {
                 ${!userName ? userEmail : userName}`}
               </div>
               <div
-                className="dashboard-header-component__img-container"
+                className={`dashboard-header-component__img-container ${
+                  !userImage ? "skeleton" : ""
+                } `}
                 onClick={toggleListVisibility}
               >
-                <img
-                  src={userImage}
-                  alt=""
-                />
+                <img src={userImage} alt="User avatar" loading="lazy" />
               </div>
             </div>
             {<ShowList isListVisible={isListVisible} />}

@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
-  userName: string | null;
+  userName?: string | null;
   userEmail?: string | null;
   userID?: string | null;
+  userImage?: string ;
 }
 
 const initialState: UserState = {
   userName: null,
   userEmail: null,
   userID: null,
+  // userImage: null,
 };
 
 const userSlice = createSlice({
@@ -18,19 +20,23 @@ const userSlice = createSlice({
   reducers: {
     setActiveUser: (
       state,
-      action: PayloadAction<{ userName: string;  userEmail: string; userID: string }>
+      action: PayloadAction<{
+        userName?: string;
+        userEmail?: string;
+        userID?: string;
+        userImage?: string;
+      }>
     ) => {
-      state.userName = action.payload.userName;
-      // const { userEmail, userID } = state;
-      // state.userEmail = userEmail;
-      // state.userID = userID;
-      state.userEmail = action.payload.userEmail;
-      state.userID = action.payload.userID;
+      state.userName = action.payload.userName ?? state.userName;
+      state.userEmail = action.payload.userEmail ?? state.userEmail;
+      state.userID = action.payload.userID ?? state.userID;
+      state.userImage = action.payload.userImage ?? state.userImage;
     },
     setUserLogOutState: (state) => {
       state.userName = null;
       state.userEmail = null;
       state.userID = null;
+      // state.userImage = null;
     },
   },
 });
@@ -42,5 +48,7 @@ export const selectUserName = (state: { user: UserState }) =>
 export const selectUserEmail = (state: { user: UserState }) =>
   state.user?.userEmail;
 export const selectUserID = (state: { user: UserState }) => state.user?.userID;
+export const selectUserImage = (state: { user: UserState }) =>
+  state.user?.userImage;
 
 export default userSlice.reducer;
