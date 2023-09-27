@@ -48,15 +48,15 @@ export const ProfilePage: React.FC = () => {
           `usersData/${userID}/userData/userName`
         );
         await setDoc(userDataRef, { userName });
-        dispatch(setActiveUser({userName}))
+        dispatch(setActiveUser({ userName }));
       }
       if (userImage) {
         const downloadURL = await handleImageUpload(userImage);
         const userImageRef: any = doc(
           db,
           `usersData/${userID}/userData/userImage`
-          );
-          await setDoc(userImageRef, { userImage: downloadURL });
+        );
+        await setDoc(userImageRef, { userImage: downloadURL });
       }
       navigate("/dashboard");
     } catch (error) {
@@ -69,28 +69,24 @@ export const ProfilePage: React.FC = () => {
       <div className="profile-page__form">
         <div className="profile-page__header">User profile </div>
         <form className="profile-page__form">
-          <div>
-            <label className="profile-page__form-label">
-              User name:
-              <input
-                className="profile-page__input"
-                type="text"
-                value={userName}
-                onChange={handleUserNameChange}
-              />
-            </label>
-          </div>
-          <div>
-            <label className="profile-page__form-label">
-              Upload your profile avatar:
-              <input
-                className="profile-page__upload"
-                type="file"
-                accept="image/*"
-                onChange={saveFile}
-              />
-            </label>
-          </div>
+          <label className="profile-page__form-label">
+            User name:
+            <input
+              className="profile-page__input"
+              type="text"
+              value={userName}
+              onChange={handleUserNameChange}
+            />
+          </label>
+          <label className="profile-page__form-label">
+            Upload your profile avatar:
+            <input
+              className="profile-page__upload"
+              type="file"
+              accept="image/*"
+              onChange={saveFile}
+            />
+          </label>
           <button
             className="profile-page__primary-button"
             type="button"
@@ -100,8 +96,7 @@ export const ProfilePage: React.FC = () => {
           </button>
         </form>
       </div>
-      <ImageComponent src="netflix-image.png" name="Netflix logo"/>
-
+      <ImageComponent src="netflix-image.png" name="Netflix logo" />
     </div>
   );
 };
