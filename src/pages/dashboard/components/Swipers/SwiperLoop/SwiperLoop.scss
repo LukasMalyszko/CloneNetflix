@@ -11,7 +11,7 @@
   @media (max-width: 834px) {
     margin-top: -160px;
   }
-  
+
   @media (max-width: 616px) {
     margin-top: 87px;
     gap: 40px;
@@ -71,13 +71,13 @@
     flex-shrink: 0;
     overflow: hidden;
     position: relative;
-    
+
     &:hover {
       .hover-dropdown {
         transform: translateY(0);
         pointer-events: auto;
       }
-  }
+    }
 
     .image {
       width: 100%;

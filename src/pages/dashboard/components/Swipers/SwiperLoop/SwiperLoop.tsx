@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { ReactionButtons } from "../ReactionButtons";
 import { updateDoc, doc, setDoc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../../../../config/firebase";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const SwiperLoop: any = ({
   showsArray,
@@ -75,7 +76,6 @@ export const SwiperLoop: any = ({
           ...show,
         });
       }
-
     } catch (error) {
       console.log("błąd wysyłania do watch again", error);
     }
@@ -93,7 +93,7 @@ export const SwiperLoop: any = ({
         </div>
       </div>
       <Swiper
-        className="swiper-component__slides"
+        className={`swiper-component__slides `}
         modules={[Navigation]}
         spaceBetween={8}
         slidesPerView={"auto"}
@@ -125,12 +125,21 @@ export const SwiperLoop: any = ({
           return (
             <SwiperSlide
               key={index}
-              className="swiper-component__slide-container skeleton"
+              className={`swiper-component__slide-container skeleton`}
               onClick={() => {
                 sendWatchedCounterToPopularCollection(show);
               }}
             >
-              <img className="image " src={show.src ?? "netflix-image.png"} alt={show.title} />
+              <LazyLoadImage
+                className="image"
+                effect="opacity"
+                alt={show.alt}
+                src={show.src ?? "netflix-image.png"}
+                width={"100%"}
+                delayTime={1000}
+                delayMethod="debounce"
+                threshold={0}
+              />
               <div className="hover-dropdown">
                 <div className="hover-dropdown__content">
                   <div className="hover-dropdown__buttons-container">
@@ -145,7 +154,6 @@ export const SwiperLoop: any = ({
                           }}
                         />
                       </div>
-
                       <div className="hover-dropdown__static-buttons">
                         <div className="hover-dropdown__icon-container add">
                           <img src="/add.svg" alt="add" />
@@ -195,7 +203,6 @@ export const SwiperLoop: any = ({
             </SwiperSlide>
           );
         })}
-
         <div
           className={`button button-prev ${hideButton ? "button-hide" : ""} `}
         >

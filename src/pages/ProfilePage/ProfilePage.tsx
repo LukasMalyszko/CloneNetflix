@@ -52,7 +52,7 @@ export const ProfilePage: React.FC = () => {
       }
       if (userImage) {
         const downloadURL = await handleImageUpload(userImage);
-        const userImageRef: any = doc(
+        const userImageRef: DocumentReference = doc(
           db,
           `usersData/${userID}/userData/userImage`
         );

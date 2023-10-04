@@ -58,31 +58,79 @@ export const DashboardPage = () => {
 
   const showsTopWorld = showsTopTenWatched.slice().reverse();
 
+  // const [isVisible, setIsVisible] = useState(false);
+
+  // const observeRef = useRef<HTMLDivElement | null>(null);
+  // console.log(observeRef.current)
+
+  // useEffect(() => {
+  //   if (observeRef.current) {
+  //     const options = {
+  //       root: null,
+  //       threshold: 0.1,
+  //     };
+
+  //     const observer = new IntersectionObserver((entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           setTimeout(() => {
+  //             setIsVisible(entry.isIntersecting);
+  //           }, 1000)
+
+  //           observer.disconnect();
+  //           console.log("Element jest w obszarze widoczności");
+  //         }
+  //       });
+  //     }, options);
+
+  //     observer.observe(observeRef.current);
+
+  //     return () => {
+  //       observer.disconnect();
+  //     };
+  //   }
+  // }, []);
+
   return (
     <div className="dashboard-page">
       <Header />
 
       <div className="swiper-container">
-        <SwiperLoop
-          showsArray={showsArrayAppreciated}
-          showsHeaderTitle={"Docenione przez krytyków"}
-        />
-        <SwiperLoop
-          showsArray={showsArrayPopularNow}
-          showsHeaderTitle={"Popularne teraz"}
-        />
-        <SwiperLoop
-          showsArray={showsArrayWatchAgain}
-          showsHeaderTitle={"Obejrzyj ponownie"}
-        />
-        <SwiperNoLoop
-          showsArray={showsTopTenWatched}
-          showsHeaderTitle={"Top 10 seriali w Polsce dzisiaj"}
-        />
-        <SwiperNoLoop
-          showsArray={showsTopWorld}
-          showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
-        />
+        {/* <div ref={observeRef}> */}
+          <SwiperLoop
+            // isVisible={isVisible}
+            showsArray={showsArrayAppreciated}
+            showsHeaderTitle={"Docenione przez krytyków"}
+          />
+        {/* </div> */}
+        {/* <div ref={observeRef}> */}
+          <SwiperLoop
+            // isVisible={isVisible}
+            showsArray={showsArrayPopularNow}
+            showsHeaderTitle={"Popularne teraz"}
+          />
+        {/* </div> */}
+        {/* <div ref={observeRef}> */}
+          <SwiperLoop
+            // isVisible={isVisible}
+            showsArray={showsArrayWatchAgain}
+            showsHeaderTitle={"Obejrzyj ponownie"}
+          />
+        {/* </div> */}
+        {/* <div ref={observeRef}> */}
+          <SwiperNoLoop
+            // isVisible={isVisible}
+            showsArray={showsTopTenWatched}
+            showsHeaderTitle={"Top 10 seriali w Polsce dzisiaj"}
+          />
+        {/* </div> */}
+        {/* <div ref={observeRef}> */}
+          <SwiperNoLoop
+            // isVisible={isVisible}
+            showsArray={showsTopWorld}
+            showsHeaderTitle={"Top 10 seriali na świecie dzisiaj"}
+          />
+        {/* </div> */}
       </div>
     </div>
   );

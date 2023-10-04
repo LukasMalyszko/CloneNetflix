@@ -3,6 +3,7 @@ import { Navigation } from "swiper";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ShowProps } from "../Intetfaces";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const SwiperNoLoop: any = ({
   showsArray,
@@ -82,7 +83,14 @@ export const SwiperNoLoop: any = ({
                 {index + 1}
               </div>
               <div className="swiper-component__img-container skeleton">
-                <img src={show.src} alt={show.title} loading="lazy" />
+                <LazyLoadImage
+                  alt={show.title}
+                  src={show.src ?? "netflix-image.png"}
+                  effect="opacity"
+                  width={"100%"}
+                  delayTime={1000}
+                  threshold={0}
+                />
               </div>
             </SwiperSlide>
           );
