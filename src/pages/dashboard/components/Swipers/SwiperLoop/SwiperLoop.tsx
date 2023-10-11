@@ -136,7 +136,7 @@ export const SwiperLoop: any = ({
                 alt={show.alt}
                 src={show.src ?? "netflix-image.png"}
                 width={"100%"}
-                delayTime={1000}
+                delayTime={0}
                 delayMethod="debounce"
                 threshold={0}
               />
