@@ -73,6 +73,9 @@
   }
 
   & &__primary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--color-white-100);
     background-color: var(--primary-color);
     width: 100%;
@@ -88,6 +91,13 @@
     }
     &:active {
       background-color: var(--color-red-900);
+    }
+  }
+
+  .loader {
+    max-width: 40px;
+    img {
+      width: 100%;
     }
   }
 

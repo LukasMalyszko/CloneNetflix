@@ -58,10 +58,17 @@ export const ProfilePage: React.FC = () => {
         );
         await setDoc(userImageRef, { userImage: downloadURL });
       }
-      navigate("/dashboard");
+      setTimeout(() => navigate("/dashboard"), 500)
+      
     } catch (error) {
       console.error("Błąd podczas zapisywania danych:", error);
     }
+  };
+
+  const [dataLoading, setDataLoading] = useState<number>(0);
+
+  const handleLoader = () => {
+    setDataLoading(1);
   };
 
   return (
@@ -88,11 +95,22 @@ export const ProfilePage: React.FC = () => {
             />
           </label>
           <button
-            className="profile-page__primary-button"
             type="button"
-            onClick={handleSave}
+            className="profile-page__primary-button"
+            data-loader={dataLoading}
+            onClick={() => {
+              handleSave();
+              handleLoader();
+            }}
+            disabled={false}
           >
-            Save
+            {dataLoading == 1 ? (
+              <div className="loader">
+                <img src="/animated-loader.svg" />
+              </div>
+            ) : (
+              <div className="text">Save</div>
+            )}
           </button>
         </form>
       </div>
